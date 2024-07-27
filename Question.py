@@ -2,7 +2,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 
 class Question:
-    def __init__(self, id: int, text: str, image: str, options: list):
+    def __init__(self, id: str, text: str, image: str, options: list):
         self._id = id
         self._text = text
         self._image = image
@@ -53,8 +53,8 @@ class Question:
 
     def _create_inline_keyboard(self, options):
         keyboard = []
-        for option in options:
-            keyboard.append([InlineKeyboardButton(option, callback_data=f"{self._id}-{option}")])
+        for i in range(0, len(options)):
+            keyboard.append([InlineKeyboardButton(options[i], callback_data=f"{self._id}-{i}")])
         return InlineKeyboardMarkup(keyboard)
 
     def create_handler(self, option_index):
