@@ -42,15 +42,15 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = query.message.chat_id
     await query.answer()
 
-    if query.data != 'intro4-0':
+    if query.data != 'intro4-0' and query.data != 'intro8-0':
         # Get the next question
         question = flow.get_next_question()
         if question:
             await context.bot.send_message(chat_id=chat_id, text=question.text, reply_markup=question.markup)
-    else:
+    elif query.data == 'intro4-0':
         await context.bot.send_message(chat_id=chat_id, text='صور الصورة لنكمل 😉')
-        # await application.stop()
-        # await application.shutdown()
+    elif query.data == 'intro8-0':
+        await context.bot.send_message(chat_id=chat_id, text='سجّل "انا جاهز" 🎤')
 
 
 
@@ -71,12 +71,20 @@ async def photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     else:
         await update.message.reply_text('That doesn\'t seem to be a photo. Please upload a photo.')
 
+async def recording(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if update.message.voice:
+        await start(update, context)
+        # Proceed to the next question or step
+    else:
+        await update.message.reply_text('That doesn\'t seem to be a recording. Please upload a recording.')
 
 def main() -> None:
     application.add_handler(CommandHandler("start", start))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, default))
     application.add_handler(CallbackQueryHandler(button))
     application.add_handler(MessageHandler(filters.PHOTO, photo))
+    application.add_handler(MessageHandler(filters.VOICE, recording))
+
 
     # Run the bot
     application.run_polling()
