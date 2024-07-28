@@ -1,4 +1,5 @@
 from babel.plural import PluralRule
+import re
 import json
 from string import Template
 import glob
@@ -48,6 +49,16 @@ class Translator():
     def get_plural_rule(self):
         return self.plural_rule
 
+    def contains_url(self, text: str) -> bool:
+        # Regular expression pattern for URLs
+        url_pattern = re.compile(
+            r'(http|https)://'  # Protocol
+            r'(\S+)'  # Domain and path
+        )
+        # Search for a URL in the text
+        match = url_pattern.search(text)
+        return match is not None
+
     def translate(self, key, **kwargs):
         # return the key instead of translation text if locale is not supported
         if self.locale not in self.data:
@@ -70,3 +81,4 @@ class Translator():
 def parse_datetime(dt, input_format='%Y-%m-%d', output_format='MMMM dd, yyyy', output_locale='en'):
     dt = datetime.strptime(dt, input_format)
     return format_datetime(dt, format=output_format, locale=output_locale)
+

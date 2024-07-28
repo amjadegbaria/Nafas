@@ -1,6 +1,6 @@
 import logging
 import i18n
-from telegram import Update
+from telegram import Update, constants
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler, ContextTypes
 from Flow import Flow
 from Question import Question
@@ -20,21 +20,39 @@ translator = i18n.Translator('data')
 
 # Initialize Flow and Questions
 flow = Flow2.flow
-
-
+async def handleBotMessage(question: Question, update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    chat_id = query.message.chat_id
+    parse_mode = constants.ParseMode.MARKDOWN_V2 if translator.contains_url(question.text) else None
+    if len(question.image):
+        if question.image.lower().endswith('.mp4'):
+            await context.bot.send_video(chat_id=chat_id, video=question.image, caption=question.text)
+        else:
+            await context.bot.send_photo(chat_id=chat_id, photo=question.image, caption=question.text)
+    else:
+        await context.bot.send_message(chat_id=chat_id, text=question.text, reply_markup=question.markup,
+                                       parse_mode=parse_mode)
+async def handleMessage(question: Question, update: Update):
+    parse_mode = constants.ParseMode.MARKDOWN_V2 if translator.contains_url(question.text) else None
+    if len(question.image):
+        if question.image.lower().endswith('.mp4'):
+            await update.message.reply_video(video=question.image, caption=question.text, disable_notification=True, supports_streaming=True)
+        else:
+            await update.message.reply_photo(photo=question.image, caption=question.text)
+    else:
+        await update.message.reply_text(question.text, reply_markup=question.markup, parse_mode=parse_mode)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     question = flow.get_next_question()
 
     if question and update.message:
-        await update.message.reply_text(question.text, reply_markup=question.markup)
+        await handleMessage(question, update)
 
     # handle all questions with no button
     while question and len(question.options) == 0:
         question = flow.get_next_question()
         if question:
-            await update.message.reply_text(question.text, reply_markup=question.markup)
-
+            await handleMessage(question, update)
 
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -46,7 +64,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         # Get the next question
         question = flow.get_next_question()
         if question:
-            await context.bot.send_message(chat_id=chat_id, text=question.text, reply_markup=question.markup)
+            await handleBotMessage(question, update, context)
     elif query.data == 'intro4-0':
         await context.bot.send_message(chat_id=chat_id, text='صور الصورة لنكمل 😉')
     elif query.data == 'intro8-0':
@@ -58,7 +76,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     while question and len(question.options) == 0:
         question = flow.get_next_question()
         if question:
-            await context.bot.send_message(chat_id=chat_id, text=question.text, reply_markup=question.markup)
+            await handleBotMessage(question, update, context)
 
 
 async def default(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
