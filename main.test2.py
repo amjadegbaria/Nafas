@@ -1,6 +1,6 @@
 import logging
 import i18n
-from telegram import Update, constants
+from telegram import Update, constants, ReplyKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler, ContextTypes
 from Flow import Flow
 from Question import Question
@@ -30,7 +30,13 @@ async def handleBotMessage(question: Question, update, context: ContextTypes.DEF
         else:
             await context.bot.send_photo(chat_id=chat_id, photo=question.image, caption=question.text)
     else:
-        await context.bot.send_message(chat_id=chat_id, text=question.text, reply_markup=question.markup,
+        if question.id == 'end':
+            reply_keyboard = [[str(i) for i in range(1, 6)], [str(i) for i in range(6, 11)]]
+            markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
+            await context.bot.send_message(chat_id=chat_id, text=question.text, reply_markup=markup,
+                                           parse_mode=parse_mode)
+        else:
+            await context.bot.send_message(chat_id=chat_id, text=question.text, reply_markup=question.markup,
                                        parse_mode=parse_mode)
 async def handleMessage(question: Question, update: Update):
     parse_mode = constants.ParseMode.MARKDOWN_V2 if translator.contains_url(question.text) else None
@@ -49,7 +55,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         await handleMessage(question, update)
 
     # handle all questions with no button
-    while question and len(question.options) == 0:
+    while question and len(question.options) == 0 and question.id != 'end':
         question = flow.get_next_question()
         if question:
             await handleMessage(question, update)
@@ -73,7 +79,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
     # handle all questions with no button
-    while question and len(question.options) == 0:
+    while question and len(question.options) == 0 and question.id != 'end':
         question = flow.get_next_question()
         if question:
             await handleBotMessage(question, update, context)
