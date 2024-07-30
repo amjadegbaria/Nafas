@@ -66,15 +66,15 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = query.message.chat_id
     await query.answer()
 
-    if query.data != 'intro4-0' and query.data != 'intro8-0':
+    if query.data != 'intro3-0' and query.data != 'intro8-0':
         # Get the next question
         question = flow.get_next_question()
         if question:
             await handleBotMessage(question, update, context)
-    elif query.data == 'intro4-0':
-        await context.bot.send_message(chat_id=chat_id, text='صور الصورة لنكمل 😉')
+    elif query.data == 'intro3-0':
+        await context.bot.send_message(chat_id=chat_id, text='ووين الصورة؟😉')
     elif query.data == 'intro8-0':
-        await context.bot.send_message(chat_id=chat_id, text='سجّل "انا جاهز" 🎤')
+        await context.bot.send_message(chat_id=chat_id, text='سجّلت؟🎤')
 
 
 
