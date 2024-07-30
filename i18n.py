@@ -4,7 +4,6 @@ import json
 from string import Template
 import glob
 import os
-import yaml
 from datetime import datetime
 from babel.dates import format_datetime
 
