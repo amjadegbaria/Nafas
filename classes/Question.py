@@ -1,7 +1,7 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton, InputMediaPhoto, InputMediaVideo
 
 class Question:
-    def __init__(self, id: str, text: str, media: str, media_type: str, options: dict, keyboard_type: str = 'inline'):
+    def __init__(self, id: str, text: str, media: str, media_type: str, options: dict, next_question_id: str, keyboard_type: str = 'inline'):
         """
         Initializes a question with its ID, text, media, media type, options, and keyboard type.
         :param id: Unique identifier for the question
@@ -10,6 +10,7 @@ class Question:
         :param media_type: Type of the media ('image', 'youtube', 'video', 'game')
         :param options: Dictionary where keys are button texts and values are the next question IDs
         :param keyboard_type: Type of keyboard to use ('inline' or 'reply')
+        :param next_question_id: Next question id in case no options defined
         """
         self._id = id
         self._text = text
@@ -19,6 +20,7 @@ class Question:
         self.keyboard_type = keyboard_type
         self._markup_inline = self._create_inline_keyboard(options)
         self._markup_reply = self._create_reply_keyboard(options)
+        self.next_question_id = next_question_id
 
     def _create_inline_keyboard(self, options: dict):
         """
@@ -42,6 +44,9 @@ class Question:
             return self._markup_inline
         elif self.keyboard_type == 'reply':
             return self._markup_reply
+        elif len(self._options) == 0:
+            return ""
+
         else:
             raise ValueError("Invalid keyboard type. Choose 'inline' or 'reply'.")
 
@@ -72,4 +77,6 @@ class Question:
         return self._options
 
     def get_next_question(self, answer):
-        return self._options[answer]
+        if answer:
+            return self._options[answer]
+        return self.next_question_id
