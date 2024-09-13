@@ -11,43 +11,44 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 # Your bot token
 TOKEN = '7304026680:AAHT8Am89N6s-fYE5FYA799VdboO9V29jbk'
+#TOKEN = '7156964389:AAGhnz_ISm7iVWeATkWlkpWCneZoJn2l_f4'
 application = Application.builder().token(TOKEN).build()
 
-# Define your questions
-questions = {
-    "q1": Question(
-        id="q1",
-        text="What is this image?",
-        media="logos.jpeg",
-        media_type="image",
-        options={"A": "q2", "B": "q3"},
-        keyboard_type="inline"
-    ),
-    "q2": Question(
-        id="q2",
-        text="Watch this video and answer:",
-        media="Countdown.mp4",
-        media_type="video",
-        options={"Option 1": "q4", "Option 2": "q5"},
-        keyboard_type="reply"
-    ),
-    "q3": Question(
-        id="q3",
-        text="Watch this video:",
-        media="https://www.youtube.com/watch?v=UfcAVejslrU",
-        media_type="youtube",
-        options={"Option A": "q6", "Option B": "q7"},
-        keyboard_type="inline"
-    ),
-    "q4": Question(
-        id="q4",
-        text="Play this game:",
-        media="https://www.youtube.com/watch?v=UfcAVejslrU",
-        media_type="youtube",
-        options={"Play": "q8"},
-        keyboard_type="reply"
-    )
-}
+# # Define your questions
+# questions = {
+#     "q1": Question(
+#         id="q1",
+#         text="What is this image?",
+#         media="logos.jpeg",
+#         media_type="image",
+#         options={"A": "q2", "B": "q3"},
+#         keyboard_type="inline"
+#     ),
+#     "q2": Question(
+#         id="q2",
+#         text="Watch this video and answer:",
+#         media="Countdown.mp4",
+#         media_type="video",
+#         options={"Option 1": "q4", "Option 2": "q5"},
+#         keyboard_type="reply"
+#     ),
+#     "q3": Question(
+#         id="q3",
+#         text="Watch this video:",
+#         media="https://www.youtube.com/watch?v=UfcAVejslrU",
+#         media_type="youtube",
+#         options={"Option A": "q6", "Option B": "q7"},
+#         keyboard_type="inline"
+#     ),
+#     "q4": Question(
+#         id="q4",
+#         text="Play this game:",
+#         media="https://www.youtube.com/watch?v=UfcAVejslrU",
+#         media_type="youtube",
+#         options={"Play": "q8"},
+#         keyboard_type="reply"
+#     )
+# }
 
 
 
@@ -85,26 +86,39 @@ async def handle_media(question, update, context) :
                 reply_markup=markup
             )
         elif media_type == 'youtube':
-            await update.message.reply_text(
+            await context.bot.send_message(
+                chat_id=chat_id,
                 text=f"{text}\n{media_path}",
                 reply_markup=markup,
             )
         elif media_type== 'game':
             # Handle game integration here
-            await update.message.reply_text(
+            await context.bot.send_message(
+                chat_id=chat_id,
                 text=f"{text}\n{media_path}",
                 reply_markup=markup
             )
+        elif len(question.get_options()) == 0:
+            await context.bot.send_message(chat_id=chat_id, text=text)
+        else:
+            await context.bot.send_message(chat_id=chat_id, text=text, reply_markup=markup)
+        if len(question.get_options()) == 0:
+            if text:
+                await context.bot.send_message(chat_id=chat_id, text=text)
+            await handle_message(update, context)
+
     else:
         await update.message.reply_text("Sorry, I don't understand that answer.")
 async def start(update: Update, context: CallbackContext) -> None:
     """Handle the /start command."""
-    flow.start_flow("q1")  # Start with the first question
+    flow.start_flow("intro1")  # Start with the first question
     question = flow.get_current_question()
     await handle_media(question, update, context)
 
 
 def getNextFromAnswer(update, question):
+    if len(question.get_options()) == 0:
+        return question.next_question_id
     query = update.callback_query
     if query:
         return query.data

@@ -15,11 +15,13 @@ class Flow:
         return None
 
     def move_to_next_question(self, next_question_id: str):
+        self.current_index += 1
         if next_question_id:
             self.history.append(next_question_id)
-            self.current_index += 1
             return self.questions.get(next_question_id)
-        return None
+        else:
+            self.history.append(self.questions[self.current_index])
+            return self.questions[self.current_index]
 
 
     def start_flow(self, start_question_id: str):
