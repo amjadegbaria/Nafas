@@ -103,8 +103,8 @@ async def handle_media(question, update, context) :
         else:
             await context.bot.send_message(chat_id=chat_id, text=text, reply_markup=markup)
         if len(question.get_options()) == 0:
-            if text:
-                await context.bot.send_message(chat_id=chat_id, text=text)
+            # if text:
+            #     await context.bot.send_message(chat_id=chat_id, text=text)
             await handle_message(update, context)
 
     else:

@@ -1,2 +1,5 @@
 venv/
-Flows/__pychache__
+Flows/__pychache__/
+.idea/Nafas.iml
+ .idea/misc.xml
+classes/__pycache__/
