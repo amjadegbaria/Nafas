@@ -1,6 +1,9 @@
+from time import sleep
 from telegram import Update, constants
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, CallbackContext
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, CallbackContext, ContextTypes
 import logging
+import i18n
+
 
 from classes.Question import Question
 from classes.Flow import Flow
@@ -13,6 +16,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 TOKEN = '7304026680:AAHT8Am89N6s-fYE5FYA799VdboO9V29jbk'
 #TOKEN = '7156964389:AAGhnz_ISm7iVWeATkWlkpWCneZoJn2l_f4'
 application = Application.builder().token(TOKEN).build()
+
+translator = i18n.Translator('data')
+
+answered_questions = {}
+
 
 # # Define your questions
 # questions = {
@@ -50,7 +58,11 @@ application = Application.builder().token(TOKEN).build()
 #     )
 # }
 
-
+def already_answered(question):
+    if answered_questions.get(question._id):
+        return True
+    answered_questions[question._id] = question._id
+    return False
 
 # Initialize Flow
 
@@ -59,8 +71,10 @@ def getChatID(update):
         return update.callback_query.message.chat_id
     return update.message.chat_id
 
-
 async def handle_media(question, update, context) :
+    if already_answered(question):
+        return
+
     if question:
         # Prepare the text and markup
         text = question.get_question_text()
@@ -100,11 +114,11 @@ async def handle_media(question, update, context) :
             )
         elif len(question.get_options()) == 0:
             await context.bot.send_message(chat_id=chat_id, text=text)
+            sleep(2)
         else:
             await context.bot.send_message(chat_id=chat_id, text=text, reply_markup=markup)
         if len(question.get_options()) == 0:
-            # if text:
-            #     await context.bot.send_message(chat_id=chat_id, text=text)
+            sleep(2)
             await handle_message(update, context)
 
     else:
@@ -130,12 +144,27 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
     next_question = flow.move_to_next_question(answer)
     await handle_media(next_question, update, context)
 
-async def handle_callback_query(update: Update, context: CallbackContext) -> None:
-    """Handle callback queries from inline keyboards."""
-    query = update.callback_query
-    answer = query.data
-    next_question = flow.move_to_next_question(answer)
-    await handle_media(next_question, update, context)
+# async def handle_callback_query(update: Update, context: CallbackContext) -> None:
+#     """Handle callback queries from inline keyboards."""
+#     query = update.callback_query
+#     answer = query.data
+#     next_question = flow.move_to_next_question(answer)
+#     await handle_media(next_question, update, context)
+async def restart(update: Update, context: CallbackContext) -> None:
+    flow.start_flow("intro")
+    answered_questions.clear()
+    await start(update, context)
+
+async def default(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if len(answered_questions) == 0:
+        await start(update, context)
+    elif answered_questions.get("end_1"): ## if the user reachs the last question, restart
+        await restart(update, context)
+    else:
+        await handle_message(update, context)
+
+
+
 
 def main() -> None:
     # """Start the bot."""
@@ -145,9 +174,11 @@ def main() -> None:
     #
     # Add handlers
     application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("restart", restart))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, default))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     application.add_handler(CallbackQueryHandler(handle_message))
-    application.add_handler(CallbackQueryHandler(handle_callback_query))
+    # application.add_handler(CallbackQueryHandler(handle_callback_query))
 
     # Start the Bot
     application.run_polling()

@@ -31,9 +31,13 @@ class Question:
 
     def _create_reply_keyboard(self, options: dict):
         """
-        Creates a reply keyboard markup.
+        Creates a reply keyboard markup with buttons arranged in two columns.
         """
-        keyboard = [[KeyboardButton(text)] for text in options.keys()]
+        button_texts = list(options.keys())
+        keyboard = []
+        for i in range(0, len(button_texts), 2):
+            row = [KeyboardButton(text) for text in button_texts[i:i + 2]]
+            keyboard.append(row)
         return ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
 
     def get_markup(self):
