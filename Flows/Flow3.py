@@ -209,7 +209,7 @@ questions = {
         media="",
         media_type="",
         options={"1": "end_1", "2": "end_1", "3": "end_1", "4": "end_1", "5": "end_1", "6": "end_1", "7": "end_1", "8": "end_1", "9": "end_1", "10": "end_1"},
-        keyboard_type="inline",
+        keyboard_type="reply",
         next_question_id=""
     ),
     "end_1": Question(
@@ -217,7 +217,7 @@ questions = {
         text=translate("end_1"),
         media="end.webp",
         media_type="image",
-        options={"Play": "q8"},
+        options={},
         keyboard_type="reply",
         next_question_id=""
     )
