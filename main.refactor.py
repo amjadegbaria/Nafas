@@ -3,10 +3,6 @@ from telegram import Update, constants
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, CallbackContext, ContextTypes
 import logging
 import i18n
-
-
-from classes.Question import Question
-from classes.Flow import Flow
 from flows.Flow3 import flow
 
 # Configure logging
@@ -14,49 +10,12 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 # Your bot token
 TOKEN = '7304026680:AAHT8Am89N6s-fYE5FYA799VdboO9V29jbk'
-#TOKEN = '7156964389:AAGhnz_ISm7iVWeATkWlkpWCneZoJn2l_f4'
 application = Application.builder().token(TOKEN).build()
 
 translator = i18n.Translator('data')
 
 answered_questions = {}
 
-
-# # Define your questions
-# questions = {
-#     "q1": Question(
-#         id="q1",
-#         text="What is this image?",
-#         media="logos.jpeg",
-#         media_type="image",
-#         options={"A": "q2", "B": "q3"},
-#         keyboard_type="inline"
-#     ),
-#     "q2": Question(
-#         id="q2",
-#         text="Watch this video and answer:",
-#         media="Countdown.mp4",
-#         media_type="video",
-#         options={"Option 1": "q4", "Option 2": "q5"},
-#         keyboard_type="reply"
-#     ),
-#     "q3": Question(
-#         id="q3",
-#         text="Watch this video:",
-#         media="https://www.youtube.com/watch?v=UfcAVejslrU",
-#         media_type="youtube",
-#         options={"Option A": "q6", "Option B": "q7"},
-#         keyboard_type="inline"
-#     ),
-#     "q4": Question(
-#         id="q4",
-#         text="Play this game:",
-#         media="https://www.youtube.com/watch?v=UfcAVejslrU",
-#         media_type="youtube",
-#         options={"Play": "q8"},
-#         keyboard_type="reply"
-#     )
-# }
 
 def already_answered(question):
     if answered_questions.get(question._id):
@@ -144,12 +103,6 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
     next_question = flow.move_to_next_question(answer)
     await handle_media(next_question, update, context)
 
-# async def handle_callback_query(update: Update, context: CallbackContext) -> None:
-#     """Handle callback queries from inline keyboards."""
-#     query = update.callback_query
-#     answer = query.data
-#     next_question = flow.move_to_next_question(answer)
-#     await handle_media(next_question, update, context)
 async def restart(update: Update, context: CallbackContext) -> None:
     flow.start_flow("intro")
     answered_questions.clear()
@@ -167,18 +120,11 @@ async def default(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 def main() -> None:
-    # """Start the bot."""
-    # TOKEN = '7304026680:AAHT8Am89N6s-fYE5FYA799VdboO9V29jbk'
-    #
-    # application = Application.builder().token(TOKEN).build()
-    #
     # Add handlers
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("restart", restart))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, default))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     application.add_handler(CallbackQueryHandler(handle_message))
-    # application.add_handler(CallbackQueryHandler(handle_callback_query))
 
     # Start the Bot
     application.run_polling()
