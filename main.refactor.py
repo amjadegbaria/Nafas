@@ -7,7 +7,7 @@ import i18n
 
 from classes.Question import Question
 from classes.Flow import Flow
-from Flows.Flow3 import flow
+from flows.Flow3 import flow
 
 # Configure logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
