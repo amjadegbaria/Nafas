@@ -2,8 +2,14 @@ from flows.flow_handler import getNextFromAnswer
 from telegram import Update
 from telegram.ext import CallbackContext
 from flows.Flow3 import flow
+from time import sleep
 
-
+answered_questions={}
+def already_answered(question):
+    if answered_questions.get(question._id):
+        return True
+    answered_questions[question._id] = question._id
+    return False
 async def handle_message(update: Update, context: CallbackContext) -> None:
     """Handle replies to reply keyboards."""
     answer = getNextFromAnswer(update, flow.get_current_question())
@@ -23,6 +29,9 @@ def getChatID(update):
     return update.message.chat_id
 
 async def handle_media(question, update, context) :
+    if already_answered(question):
+        return
+
     if question:
         # Prepare the text and markup
         text = question.get_question_text()
@@ -62,11 +71,11 @@ async def handle_media(question, update, context) :
             )
         elif len(question.get_options()) == 0:
             await context.bot.send_message(chat_id=chat_id, text=text)
+            sleep(2)
         else:
             await context.bot.send_message(chat_id=chat_id, text=text, reply_markup=markup)
         if len(question.get_options()) == 0:
-            # if text:
-            #     await context.bot.send_message(chat_id=chat_id, text=text)
+            sleep(2)
             await handle_message(update, context)
 
     else:
