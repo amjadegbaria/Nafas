@@ -4,7 +4,7 @@ from telegram import Update, constants, ReplyKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler, ContextTypes
 from Flow import Flow
 from Question import Question
-from Flows import Flow2
+from flows import Flow2
 
 # Your bot token
 TOKEN = '7304026680:AAHT8Am89N6s-fYE5FYA799VdboO9V29jbk'
