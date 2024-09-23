@@ -2,4 +2,7 @@ venv/
 Flows/__pychache__/
 .idea/Nafas.iml
  .idea/misc.xml
+ Pipfile
+ misc.xml
+ Nafas.iml
 classes/__pycache__/
