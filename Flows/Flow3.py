@@ -82,9 +82,45 @@ questions = {
         text=translate("stress_question"),
         media="",
         media_type="",
-        options={translate('stress_option1'): "exc1", translate('stress_option2'): "exc1", translate('stress_option3'): "exc1"},
+        options={translate('stress_option1'): "stress1_1", translate('stress_option2'): "stress1_2", translate('stress_option3'): "stress1_3"},
         keyboard_type="inline",
         next_question_id=""
+    ),
+    "stress1_1": Question(
+        id="stress1_1",
+        text=translate("stress_question_1"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="inline",
+        next_question_id="stress1_4"
+    ),
+    "stress1_2": Question(
+        id="stress1_2",
+        text=translate("stress_question_2"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="inline",
+        next_question_id="stress1_4"
+    ),
+    "stress1_3": Question(
+        id="stress1_3",
+        text=translate("stress_question_3"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="inline",
+        next_question_id="stress1_4"
+    ),
+    "stress1_4": Question(
+        id="stress1_4",
+        text=translate("stress_question_4"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="inline",
+        next_question_id="exc1"
     ),
     "exc1": Question(
         id="exc1",
@@ -188,8 +224,8 @@ questions = {
     "exc3_2": Question(
         id="exc3_2",
         text=translate("exc3_2"),
-        media="",
-        media_type="",
+        media="https://www.youtube.com/watch?v=UfcAVejslrU",
+        media_type="youtube",
         options={},
         keyboard_type="inline",
         next_question_id="exc3_3"
