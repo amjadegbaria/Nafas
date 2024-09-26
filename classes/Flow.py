@@ -1,9 +1,10 @@
 class Flow:
-    def __init__(self, questions: dict):
+    def __init__(self, flow_id: str, questions: dict):
         """
         Initializes the flow with a dictionary of questions.
         The dictionary keys are question IDs and values are Question objects.
         """
+        self.id = flow_id
         self.questions = questions
         self.current_index = -1
         self.history = []
@@ -14,6 +15,12 @@ class Flow:
             return self.questions.get(current_id)
         return None
 
+    def get_current_index(self):
+        return self.current_index
+
+    def get_flow_id(self):
+        return self.id
+
     def move_to_next_question(self, next_question_id: str):
         self.current_index += 1
         if next_question_id:
@@ -22,7 +29,6 @@ class Flow:
         else:
             self.history.append(self.questions[self.current_index])
             return self.questions[self.current_index]
-
 
     def start_flow(self, start_question_id: str):
         """

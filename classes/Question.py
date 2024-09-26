@@ -26,7 +26,7 @@ class Question:
         """
         Creates an inline keyboard markup.
         """
-        keyboard = [[InlineKeyboardButton(text, callback_data=value)] for text, value in options.items()]
+        keyboard = [[InlineKeyboardButton(text, callback_data=text)] for text, value in options.items()]
         return InlineKeyboardMarkup(keyboard)
 
     def _create_reply_keyboard(self, options: dict):
@@ -57,6 +57,9 @@ class Question:
     def get_media_type(self):
         return self._media_type
 
+    def get_id(self):
+        return self._id
+
     def get_media(self):
         """
         Returns the media and its type. This method provides different content based on the media type.
@@ -82,5 +85,5 @@ class Question:
 
     def get_next_question(self, answer):
         if answer:
-            return self._options[answer]
+            return self._options.get(answer)
         return self.next_question_id
