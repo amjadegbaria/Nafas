@@ -260,4 +260,4 @@ questions = {
 }
 
 # Initialize Flow
-flow = Flow(questions)
+flow = Flow("flow3", questions)
