@@ -4,7 +4,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 import logging
 import i18n
 from flows.Flow3 import flow
-from flows.flow_handler import start_flow, save_answer
+from flows.flow_handler import start_flow, save_answer, complete_flow
 from database.__init__ import client
 
 # Configure logging
@@ -88,11 +88,11 @@ async def handle_media(question, update, context) :
             )
         elif len(question.get_options()) == 0:
             await context.bot.send_message(chat_id=chat_id, text=text)
-            sleep(2)
+            # sleep(2)
         else:
             await context.bot.send_message(chat_id=chat_id, text=text, reply_markup=markup)
         if len(question.get_options()) == 0:
-            sleep(2)
+            # sleep(2)
             await handle_message(update, context)
 
     else:
@@ -108,21 +108,27 @@ async def start(update: Update, context: CallbackContext) -> None:
 
 
 def get_next_from_answer(update, question):
-    if len(question.get_options()) == 0:
+    if len(question.get_options()) == 0: ## if no buttons, get the next question from next_question_id
         return question.next_question_id
     query = update.callback_query
-    if query:
+    if query: ## if user clicks a button, direct to the next question according to the user choice
         return question.get_next_question(query.data)
     text = update.message.text
-    return question.get_next_question(text)
+    next = question.get_next_question(text)
+    if next == None:
+        complete_flow(update.effective_user.id)
+    return next
 async def handle_message(update: Update, context: CallbackContext) -> None:
     question = flow.get_current_question()
     if len(question.get_options()) > 0: # if there are options(buttons), save the response in the DB
         update_user_answer(update)
     """Handle replies to reply keyboards."""
     next_question_id = get_next_from_answer(update, flow.get_current_question())
+    if flow.is_completed():
+        complete_flow(update.effective_user.id)
     next_question = flow.move_to_next_question(next_question_id)
     await handle_media(next_question, update, context)
+
 
 async def restart(update: Update, context: CallbackContext) -> None:
     flow.start_flow("intro")

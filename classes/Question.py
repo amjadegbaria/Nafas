@@ -87,3 +87,10 @@ class Question:
         if answer:
             return self._options.get(answer)
         return self.next_question_id
+
+    def is_last(self):
+        if len(self._options) == 0 and len(self.next_question_id) == 0:
+            return True
+        return False
+
+

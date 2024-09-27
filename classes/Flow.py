@@ -36,3 +36,8 @@ class Flow:
         """
         self.history = [start_question_id]
         self.current_index = 0
+
+    def is_completed(self):
+        if self.get_current_question().is_last():
+            return True
+        return False

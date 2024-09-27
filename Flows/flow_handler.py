@@ -1,4 +1,4 @@
-from database.queries import get_user_progress, save_user_progress, reset_user_progress
+from database.queries import get_user_progress, save_user_progress, reset_user_progress, save_user_completed_flow
 
 # Start a flow (or restart)
 def start_flow(user_id, flow_id, first_question_id):
@@ -14,7 +14,6 @@ def start_flow(user_id, flow_id, first_question_id):
 def save_answer(user_id, answer, question_id):
     user_progress = get_user_progress(user_id)
     if user_progress:
-
         user_progress['answers'].append({"question_id": question_id, "answer": answer})
         user_progress['current_question_id'] = question_id
         save_user_progress(user_id, user_progress)
@@ -31,3 +30,7 @@ def resume_flow(user_id):
 # Restart the flow
 def restart_flow(user_id, flow_id):
     return start_flow(user_id, flow_id)
+
+def complete_flow(user_id):
+    user_progress = get_user_progress(user_id)
+    save_user_completed_flow(user_id, user_progress)
