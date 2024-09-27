@@ -1,6 +1,5 @@
 venv/
-.idea/Nafas.iml
-.idea/misc.xml
+.idea/**
 Pipfile
 misc.xml
 Nafas.iml
