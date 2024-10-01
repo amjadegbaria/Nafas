@@ -4,3 +4,4 @@ Pipfile
 misc.xml
 Nafas.iml
 **/__pycache__
+database/__init__.py
