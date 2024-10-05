@@ -82,7 +82,8 @@ async def handle_media_type(question, update, context):
             chat_id=chat_id,
             video=open(media_path, 'rb'),
             caption=text,
-            reply_markup=markup
+            reply_markup=markup,
+            read_timeout=200
         )
     else:
         await context.bot.send_message(chat_id=chat_id, text=f"{text}\n{media_path}", reply_markup=markup)

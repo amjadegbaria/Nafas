@@ -1,15 +1,11 @@
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, CallbackContext
-from time import sleep
-from telegram import Update, constants
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, CallbackContext, ContextTypes
+import i18n
 import logging
-from config import TOKEN
 import asyncio
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 from handlers.command_handler import start, restart, default
 from handlers.message_handler import handle_message
+from config import TOKEN
 
-import i18n
-from flows.Flow3 import flow
 
 # Configure logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
