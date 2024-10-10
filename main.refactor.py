@@ -3,7 +3,7 @@ import logging
 import asyncio
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 from handlers.command_handler import start, restart, default
-from handlers.message_handler import handle_message
+from handlers.message_handler import handle_message, handle_callback_query
 from config import TOKEN
 
 
@@ -12,15 +12,13 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 application = Application.builder().token(TOKEN).build()
 
-translator = i18n.Translator('data')
-
 
 def main() -> None:
     # Add handlers
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("restart", restart))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, default))
-    application.add_handler(CallbackQueryHandler(handle_message))
+    application.add_handler(CallbackQueryHandler(handle_callback_query))
 
     # Start the Bot
     application.run_polling()

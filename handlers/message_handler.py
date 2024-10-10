@@ -1,18 +1,28 @@
 from time import sleep
 from telegram import Update
 from telegram.ext import CallbackContext
-from flows.Flow3 import flow
-from flows.flow_handler import save_answer, complete_flow, get_next_from_answer
+# from flows.Flow3 import flow
+from flows.flow_handler import save_answer, complete_flow, get_next_from_answer, get_user_flow
 
 
 answered_questions = {}
 
+def is_completed(flow, user_id):
+    if flow.is_completed():  # if flow completed, save the response and restart the flow
+        complete_flow(user_id)
+        flow.start_flow("intro")
+        answered_questions.clear()
 
-def already_answered(question):
+
+def already_answered(user_id, question):
     q_id = question.get_id()
-    if answered_questions.get(q_id):
+    if answered_questions.get('user_id', None) and answered_questions[user_id].get(q_id):
         return True
-    answered_questions[q_id] = q_id
+    if answered_questions.get('user_id', None):
+        answered_questions[user_id].update({q_id: q_id})
+    else:
+        answered_questions.update({user_id: {}})
+        answered_questions[user_id].update({q_id: q_id})
     return False
 
 
@@ -23,6 +33,8 @@ def get_user_answer(update):
 
 
 def update_user_answer(update):
+    user_id = update.effective_user.id
+    flow = get_user_flow(user_id)
     question = flow.get_current_question()
     current_question_id = question.get_id()
     user_id = get_user_answer(update)["user_id"]
@@ -31,26 +43,30 @@ def update_user_answer(update):
 
 
 async def handle_message(update: Update, context: CallbackContext) -> None:
+    user_id = update.effective_user.id
+    flow = get_user_flow(user_id)
     question = flow.get_current_question()
     if len(question.get_options()) > 0:  # if there are options(buttons), save the response in the DB
         update_user_answer(update)
 
-    """Handle replies to reply keyboards."""
+    is_completed(flow, user_id) # if flow completed, save the response and restart the flow
     next_question_id = get_next_from_answer(update, question)
-    if flow.is_completed():  # if flow completed, save the response and restart the flow
-        complete_flow(update.effective_user.id)
-        flow.start_flow("intro")
-        answered_questions.clear()
-
     next_question = flow.move_to_next_question(next_question_id)
     await handle_media(next_question, update, context)
 
 
+
 async def handle_callback_query(update: Update, context: CallbackContext) -> None:
-    """Handle callback queries from inline keyboards."""
-    query = update.callback_query
-    answer = query.data
-    next_question = flow.move_to_next_question(answer)
+    user_id = update.effective_user.id
+    flow = get_user_flow(user_id)
+
+    update_user_answer(update)
+    is_completed(flow, user_id) # if flow completed, save the response and restart the flow
+
+    """Handle replies to reply keyboards."""
+    question = flow.get_current_question()
+    next_question_id = get_next_from_answer(update, question)
+    next_question = flow.move_to_next_question(next_question_id)
     await handle_media(next_question, update, context)
 
 
@@ -90,12 +106,12 @@ async def handle_media_type(question, update, context):
 
 
 async def handle_media(question, update, context) :
-    if already_answered(question):  # question is already answered, ignore any button interaction
+    if already_answered(update.effective_user.id, question):  # question is already answered, ignore any button interaction
         return
 
     if question:
         await handle_media_type(question, update, context)
 
         if len(question.get_options()) == 0:  # if no options (buttons) defined, continue to next question
-            sleep(2)
+            # sleep(2)
             await handle_message(update, context)

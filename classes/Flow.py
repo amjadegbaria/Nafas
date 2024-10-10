@@ -1,13 +1,12 @@
 class Flow:
-    def __init__(self, flow_id: str, questions: dict):
+    def __init__(self, flow_id: str, questions: dict, current_question_id=""):
         """
         Initializes the flow with a dictionary of questions.
         The dictionary keys are question IDs and values are Question objects.
         """
         self.id = flow_id
         self.questions = questions
-        self.current_question_id = ""
-        self.history = []
+        self.current_question_id = current_question_id
 
     def get_current_question(self):
         return self.questions.get(self.current_question_id)
