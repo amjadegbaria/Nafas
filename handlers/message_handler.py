@@ -1,17 +1,16 @@
 from time import sleep
-from telegram import Update
+from telegram import Update, constants
 from telegram.ext import CallbackContext
-# from flows.Flow3 import flow
 from flows.flow_handler import save_answer, complete_flow, get_next_from_answer, get_user_flow
 
 
 answered_questions = {}
 
+
 def is_completed(flow, user_id):
     if flow.is_completed():  # if flow completed, save the response and restart the flow
         complete_flow(user_id)
-        flow.start_flow("intro")
-        answered_questions.clear()
+        answered_questions.pop(user_id)
 
 
 def already_answered(user_id, question):
@@ -53,7 +52,6 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
     next_question_id = get_next_from_answer(update, question)
     next_question = flow.move_to_next_question(next_question_id)
     await handle_media(next_question, update, context)
-
 
 
 async def handle_callback_query(update: Update, context: CallbackContext) -> None:
@@ -101,8 +99,23 @@ async def handle_media_type(question, update, context):
             reply_markup=markup,
             read_timeout=200
         )
+    elif media_type == 'html':
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text=f"{text}\n{media_path}",
+            reply_markup=markup,
+            parse_mode=constants.ParseMode.HTML
+        )
+    elif media_type == 'youtube':
+        if media_path:
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=f"<a href='{media_path}'> </a>{text}",
+                reply_markup=markup,
+                parse_mode=constants.ParseMode.HTML
+            )
     else:
-        await context.bot.send_message(chat_id=chat_id, text=f"{text}\n{media_path}", reply_markup=markup)
+        await context.bot.send_message(chat_id=chat_id, text=f"{text}\n{media_path}", reply_markup=markup, disable_web_page_preview=True)
 
 
 async def handle_media(question, update, context) :
@@ -113,5 +126,5 @@ async def handle_media(question, update, context) :
         await handle_media_type(question, update, context)
 
         if len(question.get_options()) == 0:  # if no options (buttons) defined, continue to next question
-            # sleep(2)
+            sleep(2)
             await handle_message(update, context)

@@ -1,0 +1,78 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.circle {
+    width: 300px;
+    height: 300px;
+    background-color: #4a90e2;
+    border-radius: 50%;
+    animation: breathe 6s infinite;
+}
+
+.circle-exhale {
+    width: 300px;
+    height: 300px;
+    background-color: #4a90e2;
+    border-radius: 50%;
+    animation: exhale 6s infinite;
+	animation-delay: 1s;
+}
+
+.counter {
+    position: absolute;
+    top: 20px; /* Position the counter at the top with some margin from the circle */
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+}
+
+.text {
+    top: 150px; /* Position text with at least 50px margin from the circle */
+    font-size: 50px;
+    font-weight: bold;
+    color: #4a90e2; /* Default color */
+    text-align: center;
+    width: 100%; /* Center text */
+}
+
+@keyframes breathe {
+    0% {
+        transform: scale(0);
+        background-color: #4a90e2;
+    }
+
+    75% {
+        transform: scale(0.75); /* Hold at expanded size */
+        background-color: #4a90e2; /* Original color */
+    }
+    100% {
+        transform: scale(1); /* Shrink to a third of the size */
+        background-color: #4a90e2; /* Original color */
+    }
+}
+
+@keyframes exhale {
+    0% {
+        transform: scale(1);
+        background-color: #4a90e2;
+    }
+    100% {
+        transform: scale(0); /* Shrink to a third of the size */
+        background-color: #4a90e2; /* Original color */
+    }
+}
