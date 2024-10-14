@@ -34,3 +34,6 @@ def save_user_completed_flow(user_id, complted_flow):
         {"$push": {"completed_flows": data}, "$unset": {"active_flow": ""}},
         upsert=True
     )
+
+def get_user_data(user_id):
+    return db.users.find_one({"_id": user_id})

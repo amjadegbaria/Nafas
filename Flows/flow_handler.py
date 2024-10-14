@@ -1,5 +1,8 @@
-from database.queries import get_user_progress, save_user_progress, reset_user_progress, save_user_completed_flow
+from classes.Flow import Flow
+from flows.index import questions_map, flows_map
+from database.queries import get_user_progress, save_user_progress, reset_user_progress, save_user_completed_flow, get_user_data
 
+active_users_map = {}
 
 # Start a flow (or restart)
 def start_flow(user_id, flow_id, first_question_id):
@@ -39,6 +42,7 @@ def restart_flow(user_id, flow_id, first_question_id):
 def complete_flow(user_id):
     user_progress = get_user_progress(user_id)
     save_user_completed_flow(user_id, user_progress)
+    active_users_map.pop(user_id)
 
 
 def get_next_from_answer(update, question):
@@ -49,3 +53,24 @@ def get_next_from_answer(update, question):
         return question.get_next_question(query.data)
     text = update.message.text
     return question.get_next_question(text)
+
+
+def get_user_flow(user_id):
+    if active_users_map.get(user_id, None):
+        return active_users_map[user_id]
+
+    user_data = get_user_data(user_id)
+    if user_data:
+        active = user_data.get('active_flow', None)
+        completed = user_data.get('completed_flows', None)
+        if active:
+            flow_id = active.get('flow_id')
+            current_question_id = active.get('current_question_id')
+            active_users_map[user_id] = Flow(flow_id, questions_map[flow_id], current_question_id)
+            return active_users_map[user_id]
+        elif completed:
+            last_completed_id = completed[len(completed) - 1].get('flow_id')
+            flow_id = flows_map[last_completed_id]
+            questions = questions_map[flow_id]
+            active_users_map[user_id] = Flow(flow_id, questions, list(questions.keys())[0])
+            return active_users_map[user_id]
