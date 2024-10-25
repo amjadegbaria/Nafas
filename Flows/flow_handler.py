@@ -1,5 +1,5 @@
 from classes.Flow import Flow
-from flows.index import questions_map, flows_map
+from flows.index import questions_map, flows_map, initial_flow
 from database.queries import get_user_progress, save_user_progress, reset_user_progress, save_user_completed_flow, get_user_data
 
 active_users_map = {}
@@ -74,3 +74,7 @@ def get_user_flow(user_id):
             questions = questions_map[flow_id]
             active_users_map[user_id] = Flow(flow_id, questions, list(questions.keys())[0])
             return active_users_map[user_id]
+    else:
+        questions = questions_map[initial_flow]
+        active_users_map[user_id] = Flow(initial_flow, questions, list(questions.keys())[0])
+        return active_users_map[user_id]
