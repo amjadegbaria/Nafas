@@ -90,7 +90,7 @@ questions = {
     ),
     "stress1_1": Question(
         id="stress1_1",
-        text=translate("stress_question_1"),
+        text=translate("stress_response_high"),
         media="",
         media_type="",
         options={},
@@ -99,7 +99,7 @@ questions = {
     ),
     "stress1_2": Question(
         id="stress1_2",
-        text=translate("stress_question_2"),
+        text=translate("stress_response_mid"),
         media="",
         media_type="",
         options={},
@@ -108,7 +108,7 @@ questions = {
     ),
     "stress1_3": Question(
         id="stress1_3",
-        text=translate("stress_question_3"),
+        text=translate("stress_response_low"),
         media="",
         media_type="",
         options={},
@@ -117,7 +117,7 @@ questions = {
     ),
     "stress1_4": Question(
         id="stress1_4",
-        text=translate("stress_question_4"),
+        text=translate("exec_transition_question"),
         media="",
         media_type="",
         options={translate("yalla"): "grounding_sitting_1"},
