@@ -495,7 +495,7 @@ questions = {
         media="end.webp",
         media_type="image",
         options={},
-        keyboard_type="reply",
+        keyboard_type="",
         next_question_id=""
     )
 }

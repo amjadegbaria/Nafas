@@ -1,16 +1,20 @@
 from time import sleep
 from telegram import Update, constants
 from telegram.ext import CallbackContext
-from flows.flow_handler import save_answer, complete_flow, get_next_from_answer, get_user_flow
-
-
-answered_questions = {}
+from flows.restart_flow import RESTART_FLOW
+from flows.flow_handler import save_answer, complete_flow, get_next_from_answer, get_user_flow, answered_questions,\
+    check_user_last_interaction, start_flow
+from database.queries import get_user_data, reset_user_progress
 
 
 def is_completed(flow, user_id):
     if flow.is_completed():  # if flow completed, save the response and restart the flow
-        complete_flow(user_id)
         answered_questions.pop(user_id)
+        # if the completed flow is the restart flow, clean the active flow and move to next one
+        if flow.get_id() == "restart_flow":
+            reset_user_progress(user_id)
+        else:
+            complete_flow(user_id)
 
 
 def already_answered(user_id, question):
@@ -23,6 +27,14 @@ def already_answered(user_id, question):
         answered_questions.update({user_id: {}})
         answered_questions[user_id].update({q_id: q_id})
     return False
+
+
+async def trigger_restart_flow(update, context):
+    user_id = update.effective_user.id
+    question = RESTART_FLOW.get_current_question()
+    RESTART_FLOW.start_flow(question.get_id())  # Start with the first question
+    start_flow(user_id, RESTART_FLOW.get_id(), question.get_id())
+    await handle_media(question, update, context)
 
 
 def get_user_answer(update):
@@ -48,7 +60,7 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
     if len(question.get_options()) > 0:  # if there are options(buttons), save the response in the DB
         update_user_answer(update)
 
-    is_completed(flow, user_id) # if flow completed, save the response and restart the flow
+    is_completed(flow, user_id)  # if flow completed, save the response and restart the flow
     next_question_id = get_next_from_answer(update, question)
     next_question = flow.move_to_next_question(next_question_id)
     await handle_media(next_question, update, context)
@@ -56,6 +68,15 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
 
 async def handle_callback_query(update: Update, context: CallbackContext) -> None:
     user_id = update.effective_user.id
+    user_data = get_user_data(user_id)
+    if check_user_last_interaction(user_data):
+        await trigger_restart_flow(update, context)
+        return
+    answer = get_user_answer(update)["answer"]
+    if callable(answer):  # check if function, if yes run it otherwise continue
+        answer(update, context)
+        return
+
     flow = get_user_flow(user_id)
 
     update_user_answer(update)

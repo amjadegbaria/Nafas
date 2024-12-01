@@ -11,8 +11,7 @@ class Flow:
     def get_current_question(self):
         return self.questions.get(self.current_question_id)
 
-
-    def get_flow_id(self):
+    def get_id(self):
         return self.id
 
     def move_to_next_question(self, next_question_id: str):
