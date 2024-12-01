@@ -1,8 +1,11 @@
 from classes.Flow import Flow
 from flows.index import questions_map, flows_map, initial_flow
-from database.queries import get_user_progress, save_user_progress, reset_user_progress, save_user_completed_flow, get_user_data
+from database.queries import get_user_progress, save_user_progress, remove_expired_active_flow, \
+    save_user_completed_flow, get_user_data
 
 active_users_map = {}
+answered_questions = {}
+
 
 # Start a flow (or restart)
 def start_flow(user_id, flow_id, first_question_id):
@@ -18,12 +21,10 @@ def start_flow(user_id, flow_id, first_question_id):
 # Save the user's answer and move to the next question
 def save_answer(user_id, answer, question_id):
     user_progress = get_user_progress(user_id)
-    if user_progress:
-        user_progress['answers'].append({"question_id": question_id, "answer": answer})
-        user_progress['current_question_id'] = question_id
-        save_user_progress(user_id, user_progress)
-        return user_progress['current_question_id']
-    return None
+    user_progress['answers'].append({"question_id": question_id, "answer": answer})
+    user_progress['current_question_id'] = question_id
+    save_user_progress(user_id, user_progress)
+    return user_progress['current_question_id']
 
 
 # Resume the flow from where the user left off
@@ -32,11 +33,6 @@ def resume_flow(user_id):
     if user_progress:
         return user_progress['current_question_id']
     return None
-
-
-# Restart the flow
-def restart_flow(user_id, flow_id, first_question_id):
-    return start_flow(user_id, flow_id, first_question_id)
 
 
 def complete_flow(user_id):
@@ -55,11 +51,21 @@ def get_next_from_answer(update, question):
     return question.get_next_question(text)
 
 
+def check_user_last_interaction(user_data):
+    active = user_data.get('active_flow', None)
+    # check if 15min passed, if true, clear the active flow from the DB and restart
+    if active and remove_expired_active_flow(user_data):
+        # clean the user from local active_users map
+        active_users_map.pop(user_data["_id"])
+        answered_questions.pop(user_data["_id"])
+        return True
+
+
 def get_user_flow(user_id):
+    user_data = get_user_data(user_id)
     if active_users_map.get(user_id, None):
         return active_users_map[user_id]
 
-    user_data = get_user_data(user_id)
     if user_data:
         active = user_data.get('active_flow', None)
         completed = user_data.get('completed_flows', None)
