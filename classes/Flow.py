@@ -1,5 +1,5 @@
 class Flow:
-    def __init__(self, flow_id: str, questions: dict, current_question_id=""):
+    def __init__(self, flow_id: str, questions: dict, current_question_id="", first_question_id=None):
         """
         Initializes the flow with a dictionary of questions.
         The dictionary keys are question IDs and values are Question objects.
@@ -7,6 +7,7 @@ class Flow:
         self.id = flow_id
         self.questions = questions
         self.current_question_id = current_question_id
+        self.first_question_id = first_question_id or current_question_id
 
     def get_current_question(self):
         return self.questions.get(self.current_question_id)
@@ -32,4 +33,10 @@ class Flow:
         return False
 
     def get_question_by_id(self, q_id):
-        return self.questions[q_id]
+        return self.questions.get(q_id)
+
+    def get_first_question_id(self):
+        return self.first_question_id
+
+    def duplicate_flow(self):
+        return Flow(self.id, self.questions, self.current_question_id, self.first_question_id)

@@ -1,8 +1,8 @@
 import logging
 import asyncio
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
+from handlers.callback_handler import handle_callback_query
 from handlers.command_handler import start, restart, default
-from handlers.message_handler import handle_callback_query
 from config import TOKEN
 
 

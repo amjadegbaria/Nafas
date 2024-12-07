@@ -492,7 +492,7 @@ questions = {
     "end_1": Question(
         id="end_1",
         text=translate("end_1"),
-        media="end.webp",
+        media="media/end.webp",
         media_type="image",
         options={},
         keyboard_type="",
@@ -501,4 +501,4 @@ questions = {
 }
 
 # Initialize Flow
-flow = Flow("flow3", questions)
+flow = Flow("flow3", questions, "alt_into")

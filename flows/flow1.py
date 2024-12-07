@@ -53,7 +53,7 @@ questions = {
     "intro6": Question(
         id="intro6",
         text=translate("intro6"),
-        media="logos.jpeg",
+        media="media/logos.jpeg",
         media_type="image",
         options={},
         keyboard_type="inline",
@@ -565,7 +565,7 @@ questions = {
     "end_1": Question(
         id="end_1",
         text=translate("end_1"),
-        media="end.webp",
+        media="media/end.webp",
         media_type="image",
         options={},
         keyboard_type="",
@@ -574,4 +574,4 @@ questions = {
 }
 
 # Initialize Flow
-flow = Flow("flow3", questions)
+flow = Flow("flow1", questions, "intro1")

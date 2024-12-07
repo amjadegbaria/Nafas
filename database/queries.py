@@ -44,12 +44,12 @@ def save_user_completed_flow(user_id, complted_flow):
 
 
 def get_user_data(user_id):
-    return db.users.find_one({"_id": user_id})
+    return db.users.find_one({"_id": user_id}) or {}
 
 
 def remove_expired_active_flow(user_data):
     # Calculate the time 15 minutes ago
-    expiration_time = datetime.utcnow() - timedelta(minutes=0.05)
+    expiration_time = datetime.utcnow() - timedelta(minutes=15)
 
     # Check if last interaction is older than 15 minutes
     if user_data["last_interaction"] < expiration_time:
@@ -61,3 +61,9 @@ def remove_expired_active_flow(user_data):
         return True
     else:
         return False
+
+
+def get_user_answer(update):
+    if update.callback_query:
+        return {"answer": update.callback_query.data, "user_id": update.callback_query.from_user.id}
+    return {"answer": update.message.text, "user_id": update.message.from_user.id}
