@@ -88,7 +88,8 @@ def get_user_flow(user_id):
         completed = user_data.get('completed_flows', None)
         if active:
             flow_id = active.get('flow_id')
-            active_users_map[user_id] = flows.get(flow_id).duplicate_flow()
+            current_flow_id = active.get('current_flow_id')
+            active_users_map[user_id] = flows.get(flow_id).duplicate_flow(current_flow_id)
             return active_users_map[user_id]
         elif completed:
             last_completed_id = completed[len(completed) - 1].get('flow_id')

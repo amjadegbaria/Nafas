@@ -28,7 +28,8 @@ def reset_user_progress(user_id):
 
 
 def save_user_completed_flow(user_id, complted_flow):
-    if complted_flow["flow_id"] == "restart_flow": # ignore restart flows and don't save in DB
+    flow_id = complted_flow["flow_id"]
+    if flow_id == "restart_flow": # ignore restart flows and don't save in DB
         db['users'].update_one(
             {"_id": user_id},
             {"$unset": {"active_flow": ""}},
@@ -36,11 +37,18 @@ def save_user_completed_flow(user_id, complted_flow):
         )
         return
     data = {"flow_id": complted_flow["flow_id"], "answers": complted_flow["answers"], "last_interaction": datetime.utcnow()}
-    db['users'].update_one(
-        {"_id": user_id},
-        {"$push": {"completed_flows": data}, "$unset": {"active_flow": ""}},
-        upsert=True
-    )
+    if flow_id == 'questions_list':
+        db['users'].update_one(
+            {"_id": user_id},
+            {"$push": {"completed_exercises": data}, "$unset": {"active_flow": ""}},
+            upsert=True
+        )
+    else:
+        db['users'].update_one(
+            {"_id": user_id},
+            {"$push": {"completed_flows": data}, "$unset": {"active_flow": ""}},
+            upsert=True
+        )
 
 
 def get_user_data(user_id):

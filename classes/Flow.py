@@ -38,5 +38,5 @@ class Flow:
     def get_first_question_id(self):
         return self.first_question_id
 
-    def duplicate_flow(self):
-        return Flow(self.id, self.questions, self.current_question_id, self.first_question_id)
+    def duplicate_flow(self, current_flow_id):
+        return Flow(self.id, self.questions, current_flow_id or self.current_question_id, self.first_question_id)

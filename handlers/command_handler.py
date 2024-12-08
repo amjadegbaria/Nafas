@@ -4,7 +4,8 @@ from utils.constants import answered_questions
 from handlers.flow_handler import start_flow, check_user_last_interaction, process_question, trigger_restart_flow
 from handlers.utils import get_user_flow
 from database.queries import get_user_data, reset_user_progress
-
+from utils.constants import active_users_map
+from flows.questions_list import questions_list_flow
 
 async def start(update: Update, context: CallbackContext) -> None:
     """Handle the /start command."""
@@ -36,7 +37,25 @@ async def default(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def restart(update: Update, context: CallbackContext) -> None:
-    user_id = update.message.from_user.id
-    answered_questions.pop(user_id)
+    user_id = update.effective_user.id
     reset_user_progress(user_id)  # clean the restart flow from the DB
-    await start(update, context)
+    active_users_map.pop(user_id)
+    flow = get_user_flow(user_id)
+    flow.start_flow(flow.get_first_question_id())
+    start_flow(user_id, flow.get_id(), flow.get_first_question_id())
+    answered_questions.pop(user_id)
+    # Process the first question in the flow
+    await process_question(update, context, flow)
+
+async def menu(update: Update, context: CallbackContext) -> None:
+    user_id = update.effective_user.id
+    reset_user_progress(user_id)  # clean the restart flow from the DB
+    if active_users_map.get(user_id):
+        active_users_map.pop(user_id)
+    if answered_questions.get(user_id):
+        answered_questions.pop(user_id)
+    flow = questions_list_flow.duplicate_flow()
+    flow.start_flow(flow.get_first_question_id())
+    start_flow(user_id, flow.get_id(), flow.get_first_question_id())
+    active_users_map[user_id] = flow
+    await process_question(update, context, flow)
