@@ -58,15 +58,22 @@ def get_user_data(user_id):
 def remove_expired_active_flow(user_data):
     # Calculate the time 15 minutes ago
     expiration_time = datetime.utcnow() - timedelta(minutes=15)
-
+    completed_flows = user_data.get('completed_flows')
+    active_flow = user_data.get('active_flow')
     # Check if last interaction is older than 15 minutes
-    if user_data["last_interaction"] < expiration_time:
+    if active_flow and user_data["last_interaction"] < expiration_time:
         # Update user document to remove active_flow
         db['users'].update_one(
             {"_id": user_data["_id"]},
             {"$unset": {"active_flow": ""}}
         )
         return True
+    elif not active_flow and completed_flows and completed_flows[-1]:
+        last_flow = completed_flows[-1]
+        last_interaction = last_flow['last_interaction'].strftime("%Y-%m-%dT%H:%M:%S.%f%z")
+        date = datetime.fromisoformat(last_interaction)
+        if date.date() == date.utcnow().date():
+            return True
     else:
         return False
 

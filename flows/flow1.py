@@ -465,7 +465,7 @@ questions = {
                  "6": "stress_still_high",
                  "7": "stress_still_high", "8": "stress_still_high", "9": "stress_still_high",
                  "10": "stress_still_high"},
-        keyboard_type="reply",
+        keyboard_type="inline",
         next_question_id=""
     ),
     "stress_still_high": Question(

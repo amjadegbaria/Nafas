@@ -1,12 +1,12 @@
+from _datetime import datetime, timedelta
 from time import sleep
 from telegram import Update
 from telegram.ext import CallbackContext
 from flows.index import flows_map, initial_flow, flows
-from classes import Flow
 from database.queries import get_user_progress, save_user_progress,\
     save_user_completed_flow, get_user_data, get_user_answer, reset_user_progress
 from handlers.media_handler import handle_media_type
-from utils.helpers import already_answered
+from utils.helpers import already_answered, update_already_answered
 from utils.constants import active_users_map, answered_questions
 
 async def restart_flow(update, context):
@@ -93,8 +93,14 @@ def get_user_flow(user_id):
             return active_users_map[user_id]
         elif completed:
             last_completed_id = completed[len(completed) - 1].get('flow_id')
-            flow_id = flows_map[last_completed_id]
-            active_users_map[user_id] = flows.get(flow_id).duplicate_flow()
+            next_flow_id = flows_map[last_completed_id]
+            last_flow = completed[-1]
+            last_interaction = last_flow['last_interaction'].strftime("%Y-%m-%dT%H:%M:%S.%f%z")
+            date = datetime.fromisoformat(last_interaction)
+            if date.date() == date.utcnow().date():
+                active_users_map[user_id] = flows.get(last_completed_id).duplicate_flow()
+            else:
+                active_users_map[user_id] = flows.get(next_flow_id).duplicate_flow()
             return active_users_map[user_id]
 
     active_users_map[user_id] = flows.get(initial_flow).duplicate_flow()
@@ -117,19 +123,17 @@ async def process_question(update: Update, context: CallbackContext, flow=None) 
     # Handle media for the current question
     await handle_media_type(question, update, context)
 
-    # # Save the user's answer if there are options
-    # if question.get_options():
-    #     update_user_answer(update)
 
     # Check if the flow is completed
     if is_completed(flow, user_id):
         return
 
-    # Get the next question
-    next_question_id = get_next_from_answer(update, question)
-
     # Move to the next question in the flow
-    next_question = flow.move_to_next_question(next_question_id)
-    if next_question:
-        sleep(2)
-        await process_question(update, context, flow)
+    if len(question.get_options()) == 0:
+        # Get the next question
+        next_question_id = get_next_from_answer(update, question)
+
+        next_question = flow.move_to_next_question(next_question_id)
+        if next_question:
+            sleep(2)
+            await process_question(update, context, flow)

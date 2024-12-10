@@ -347,7 +347,7 @@ questions = {
         media="",
         media_type="",
         options={"1": "em_reg_1", "2": "em_reg_1", "3": "em_reg_1", "4": "em_reg_1", "5": "em_reg_1", "6": "em_reg_1", "7": "em_reg_1", "8": "em_reg_1", "9": "em_reg_1", "10": "em_reg_1"},
-        keyboard_type="reply",
+        keyboard_type="inline",
         next_question_id=""
     ),
     "em_reg_1": Question(

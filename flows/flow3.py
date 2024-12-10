@@ -306,7 +306,7 @@ questions = {
         media_type="",
         options={"1": "stress_low", "2": "stress_low", "3": "stress_low", "4": "stress_low", "5": "stress_still_high", "6": "stress_still_high",
                  "7": "stress_still_high", "8": "stress_still_high", "9": "stress_still_high", "10": "stress_still_high"},
-        keyboard_type="reply",
+        keyboard_type="inline",
         next_question_id=""
     ),
     "stress_still_high": Question(
@@ -486,7 +486,7 @@ questions = {
         media="",
         media_type="",
         options={"1": "end_1", "2": "end_1", "3": "end_1", "4": "end_1", "5": "end_1", "6": "end_1", "7": "end_1", "8": "end_1", "9": "end_1", "10": "end_1"},
-        keyboard_type="reply",
+        keyboard_type="inline",
         next_question_id=""
     ),
     "end_1": Question(
