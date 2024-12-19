@@ -27,7 +27,10 @@ async def handle_callback_query(update: Update, context: CallbackContext) -> Non
     callback = question.get_options().get(update.callback_query.data)
     if callable(callback):  # If the next question is a callable, execute it
         await next_question_id(update, context)
-        return
+        next_question_id = question.next_question_id
+        if not next_question_id:  ## if next question id is not provided, stop the flow
+            return
+
 
     # Update flow progress
     update_user_answer(update)
