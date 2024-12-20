@@ -25,13 +25,24 @@ class Question:
         self._markup_reply = self._create_reply_keyboard(options)
         self.next_question_id = next_question_id
 
+
     def _create_inline_keyboard(self, options: dict):
         """
-        Creates an inline keyboard markup.
+        Creates an inline keyboard markup with buttons arranged in two columns.
+        Each button is labeled with the key of the dictionary and sends the corresponding value as a callback data.
         """
-        keyboard = [[InlineKeyboardButton(text, callback_data=text)] for text, value in options.items()]
+        button_texts = list(options.keys())
+        keyboard = []
+        if len(options) > 5:
+            for i in range(0, len(button_texts), 2):
+                row = [
+                    InlineKeyboardButton(text, callback_data=text)
+                    for text in button_texts[i:i + 2]
+                ]
+                keyboard.append(row)
+        else:
+            keyboard = [[InlineKeyboardButton(text, callback_data=text)] for text, value in options.items()]
         return InlineKeyboardMarkup(keyboard)
-
     def _create_reply_keyboard(self, options: dict):
         """
         Creates a reply keyboard markup with buttons arranged in two columns.

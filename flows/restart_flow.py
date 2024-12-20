@@ -2,7 +2,7 @@ import i18n
 from classes.Question import Question
 from classes.Flow import Flow
 from database.queries import reset_user_progress
-from utils.constants import active_users_map
+from utils.constants import active_users_map, answered_questions
 from handlers.utils import process_question, get_user_flow, start_flow
 
 
@@ -13,6 +13,7 @@ async def restart_flow(update, context):
     flow = get_user_flow(user_id)
     flow.start_flow(flow.get_first_question_id())
     start_flow(user_id, flow.get_id(), flow.get_first_question_id())
+    answered_questions.pop(user_id)
     RESTART_FLOW.start_flow(RESTART_FLOW.get_first_question_id())
     # Process the first question in the flow
     await process_question(update, context, flow)
