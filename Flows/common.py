@@ -305,7 +305,7 @@ breath_exc_1 = {
     "breath_exc_1": Question(
         id="breath_exc_1",
         text=translate("breath_exc_1"),
-        media="https://www.ddinstagram.com/reel/C7m4nqpOa3y/",
+        media="https://youtube.com/shorts/_rJdObUzTfQ",
         media_type="youtube",
         options={},
         keyboard_type="",
@@ -831,16 +831,7 @@ task_1 = {
         text=translate("task2_3"),
         media="",
         media_type="",
-        options={translate('yalla'):"task2_4"},
-        keyboard_type="inline",
-        next_question_id=""
-    ),
-    "task2_4": Question(
-        id="task2_4",
-        text=translate("task2_4"),
-        media="",
-        media_type="",
-        options={translate('exp_chest_1'):"task2_5", translate('exp_belly_1'):"task2_5"},
+        options={translate('yalla'):"task2_5"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -858,9 +849,9 @@ task_1 = {
         text=translate("task2_6"),
         media="https://www.youtube.com/watch?v=Y8w8lxMv8mw",
         media_type="youtube",
-        options={},
-        keyboard_type="",
-        next_question_id="task2_7"
+        options={translate("done"):"task2_7"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "task2_7": Question(
         id="task2_7",
