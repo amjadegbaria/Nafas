@@ -201,6 +201,9 @@
   "restart_message2": "هاي السيرورة مفضل تكون متواصلة لنشوف نتيجتها",
   "restart_button": "يلا نبلش من جديد\uD83D\uDCAA ",
 
+  "menu_flow_1": "يبدو انك انهيت المسار لليوم",
+  "menu_button": "قائمة التمارين",
+
   "questions_list_intro": "اختر نوع التمرين المفضل عليك:",
   "questions_list_intro_1": "\uD83D\uDC86\uD83C\uDFFB\u200D♀\uFE0F تمارين خفيفة لطيفة",
   "questions_list_intro_2": "\uD83E\uDDD8\uD83C\uDFFB تمارين تخفيف التوتر",

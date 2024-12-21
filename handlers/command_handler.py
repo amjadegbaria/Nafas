@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import CallbackContext, ContextTypes
 from utils.constants import answered_questions
-from handlers.flow_handler import start_flow, check_user_last_interaction, process_question, trigger_restart_flow
+from handlers.flow_handler import start_flow, check_user_last_interaction, process_question, trigger_restart_flow, is_flow_done_today, trigger_menu_flow
 from handlers.utils import get_user_flow
 from database.queries import get_user_data, reset_user_progress
 from utils.constants import active_users_map
@@ -28,6 +28,8 @@ async def default(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
     if check_user_last_interaction(user_data):
         await trigger_restart_flow(update, context)
+    elif is_flow_done_today(user_data):
+        await trigger_menu_flow(update, context)
     elif not answered_questions.get(user_id, None):  # flow did not start yet
         await start(update, context)
     elif flow.is_completed():  # if the user reaches the last question, restart

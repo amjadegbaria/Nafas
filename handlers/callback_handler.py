@@ -1,8 +1,8 @@
 from telegram import Update
 from telegram.ext import CallbackContext
-from handlers.flow_handler import trigger_restart_flow
+from handlers.flow_handler import trigger_restart_flow, trigger_menu_flow
 from database.queries import get_user_data
-from handlers.flow_handler import check_user_last_interaction, process_question
+from handlers.flow_handler import check_user_last_interaction, process_question, is_flow_done_today
 from handlers.utils import update_user_answer, is_completed, get_next_from_answer, get_user_flow
 from utils.helpers import update_already_answered
 
@@ -16,6 +16,11 @@ async def handle_callback_query(update: Update, context: CallbackContext) -> Non
     # Check for inactivity and restart flow if necessary
     if flow.id != 'restart_flow' and check_user_last_interaction(user_data):
         await trigger_restart_flow(update, context)
+        return
+
+    # Check if the user have finished his flow for today, if yes show the menu
+    if flow.id != 'menu_flow' and is_flow_done_today(user_data):
+        await trigger_menu_flow(update, context)
         return
 
     # Move to the next question
