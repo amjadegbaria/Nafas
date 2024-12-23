@@ -68,14 +68,7 @@ def remove_expired_active_flow(user_data):
             {"$unset": {"active_flow": ""}}
         )
         return True
-    elif not active_flow and completed_flows and completed_flows[-1]:
-        last_flow = completed_flows[-1]
-        last_interaction = last_flow['last_interaction'].strftime("%Y-%m-%dT%H:%M:%S.%f%z")
-        date = datetime.fromisoformat(last_interaction)
-        if date.date() == date.utcnow().date():
-            return True
-    else:
-        return False
+    return False
 
 
 def get_user_answer(update):
