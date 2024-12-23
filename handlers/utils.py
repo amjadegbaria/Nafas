@@ -1,5 +1,5 @@
-from _datetime import datetime, timedelta
-from time import sleep
+from _datetime import datetime
+from asyncio import sleep
 from telegram import Update
 from telegram.ext import CallbackContext
 from flows.index import flows_map, initial_flow, flows
@@ -135,5 +135,5 @@ async def process_question(update: Update, context: CallbackContext, flow=None) 
 
         next_question = flow.move_to_next_question(next_question_id)
         if next_question:
-            sleep(2)
+            await sleep(2)
             await process_question(update, context, flow)

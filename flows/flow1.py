@@ -1,3 +1,4 @@
+import asyncio
 from classes.Question import Question
 from classes.Flow import Flow
 from utils.helpers import timer
@@ -7,8 +8,8 @@ import i18n
 translate = i18n.Translator('data').translate
 async def timer_30(update, context):
     seconds = 30
-    await timer(update,seconds)
-    return
+    asyncio.create_task(timer(update, seconds))
+    return True
 
 questions = {
     "intro1": Question(
@@ -333,7 +334,16 @@ questions = {
         media_type="",
         options={translate('start'): timer_30},
         keyboard_type="inline",
-        next_question_id="countdown_exc_4"
+        next_question_id="countdown_exc_3_1"
+    ),
+    "countdown_exc_3_1": Question(
+        id="countdown_exc_3_1",
+        text=translate("countdown_exc_3_1"),
+        media="",
+        media_type="",
+        options={translate('done'): 'countdown_exc_4'},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "countdown_exc_4": Question(
         id="countdown_exc_4",

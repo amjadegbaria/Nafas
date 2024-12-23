@@ -1,17 +1,21 @@
+import asyncio
 from classes.Question import Question
 from classes.Flow import Flow
 import i18n
 from utils.helpers import timer
 translate = i18n.Translator('data').translate
 
+
 async def timer_60(update, context):
     seconds = 60
-    await timer(update,seconds)
-    return
+    asyncio.create_task(timer(update, seconds))
+    return True
+
+
 async def timer_120(update, context):
     seconds = 120
-    await timer(update,seconds)
-    return
+    asyncio.create_task(timer(update, seconds))
+    return True
 
 questions = {
     "alt_into": Question(
@@ -228,7 +232,16 @@ questions = {
         media_type="",
         options={translate("start"): timer_60},
         keyboard_type="inline",
-        next_question_id="breath3_exc_3"
+        next_question_id="breath3_exc_2_3"
+    ),
+    "breath3_exc_2_3": Question(
+        id="breath3_exc_2_3",
+        text=translate("breath3_exc_2_3"),
+        media="",
+        media_type="",
+        options={translate("done"): "breath3_exc_3"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "breath3_exc_3": Question(
         id="breath3_exc_3",
@@ -279,7 +292,16 @@ questions = {
         media_type="",
         options={translate("start"): timer_60},
         keyboard_type="inline",
-        next_question_id="breath3_exc_8"
+        next_question_id="breath3_exc_7_1"
+    ),
+    "breath3_exc_7_1": Question(
+        id="breath3_exc_7_1",
+        text=translate("breath3_exc_7_1"),
+        media="",
+        media_type="",
+        options={translate("done"): "breath3_exc_8"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "breath3_exc_8": Question(
         id="breath3_exc_8",
@@ -297,7 +319,16 @@ questions = {
         media_type="",
         options={translate("start"): timer_120},
         keyboard_type="inline",
-        next_question_id="transition_1"
+        next_question_id="breath3_exc_9_1"
+    ),
+    "breath3_exc_9_1": Question(
+        id="breath3_exc_9_1",
+        text=translate("breath3_exc_2_3"),
+        media="",
+        media_type="",
+        options={translate("done"): "transition_1"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
      "transition_1": Question(
         id="transition_1",
