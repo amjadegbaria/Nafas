@@ -491,13 +491,10 @@ integration_1 = {
     "integration2_2": Question(
         id="integration2_2",
         text=translate("integration2_2"),
-        media="",
-        media_type="",
+        media="https://www.ddinstagram.com/p/C7V7ld3s4u6/",
+        media_type="youtube",
         options={
-            translate('integration2_2_op1'):"integration2_3",
-            translate('integration2_2_op2'):"integration2_3",
-            translate('integration2_2_op3'):"integration2_3",
-            translate('integration2_2_op4'):"integration2_3"
+            translate('done'):"integration2_3",
         },
         keyboard_type="inline",
         next_question_id=""
@@ -505,207 +502,42 @@ integration_1 = {
     "integration2_3": Question(
         id="integration2_3",
         text=translate("integration2_3"),
-        media="media/hefty-smurf-stubbed-toe.gif",
-        media_type="image",
-        options={translate("right"):"integration2_4"},
-        keyboard_type="inline",
-        next_question_id=""
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="integration2_4"
     ),
     "integration2_4": Question(
         id="integration2_4",
         text=translate("integration2_4"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_5"
+        options={translate('nice'):"integration2_5"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "integration2_5": Question(
         id="integration2_5",
         text=translate("integration2_5"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_6"
+        options={translate('OK'): "integration2_6"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "integration2_6": Question(
         id="integration2_6",
         text=translate("integration2_6"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_7"
+        options={translate('why'): "integration2_7"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "integration2_7": Question(
         id="integration2_7",
         text=translate("integration2_7"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_8"
-    ),
-    "integration2_8": Question(
-        id="integration2_8",
-        text=translate("integration2_8"),
-        media="",
-        media_type="",
-        options={translate("integration2_8_op1"):"integration2_9"},
-        keyboard_type="inline",
-        next_question_id=""
-    ),
-    "integration2_9": Question(
-        id="integration2_9",
-        text=translate("integration2_9"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_10"
-    ),
-    "integration2_10": Question(
-        id="integration2_10",
-        text=translate("integration2_10"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_11"
-    ),
-    "integration2_11": Question(
-        id="integration2_11",
-        text=translate("integration2_11"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_12"
-    ),
-    "integration2_12": Question(
-        id="integration2_12",
-        text=translate("integration2_12"),
-        media="",
-        media_type="",
-        options={translate("yalla"):"integration2_13"},
-        keyboard_type="inline",
-        next_question_id=""
-    ),
-    "integration2_13": Question(
-        id="integration2_13",
-        text=translate("integration2_13"),
-        media="",
-        media_type="",
-        options={
-            translate("integration2_13_op1"):"integration2_13_op1_response",
-            translate("integration2_13_op2"): "integration2_13_op2_response",
-        },
-        keyboard_type="inline",
-        next_question_id=""
-    ),
-    "integration2_13_op1_response": Question(
-        id="integration2_13_op1_response",
-        text=translate("integration2_13_op1_response"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_14"
-    ),
-    "integration2_13_op2_response": Question(
-        id="integration2_13_op2_response",
-        text=translate("integration2_13_op2_response"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_14"
-    ),
-    "integration2_14": Question(
-        id="integration2_14",
-        text=translate("integration2_14"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_15"
-    ),
-    "integration2_15": Question(
-        id="integration2_15",
-        text=translate("integration2_15"),
-        media="",
-        media_type="",
-        options={translate('integration2_15_op1'):"integration2_16"},
-        keyboard_type="inline",
-        next_question_id=""
-    ),
-    "integration2_16": Question(
-        id="integration2_16",
-        text=translate("integration2_16"),
-        media="",
-        media_type="",
-        options={translate('integration2_16_op1'):"integration2_17"},
-        keyboard_type="inline",
-        next_question_id=""
-    ),
-    "integration2_17": Question(
-        id="integration2_17",
-        text=translate("integration2_17"),
-        media="",
-        media_type="",
-        options={translate('integration2_17_op1'):"integration2_18"},
-        keyboard_type="inline",
-        next_question_id=""
-    ),
-    "integration2_18": Question(
-        id="integration2_18",
-        text=translate("integration2_18"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_19"
-    ),
-    "integration2_19": Question(
-        id="integration2_19",
-        text=translate("integration2_19"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_20"
-    ),
-    "integration2_20": Question(
-        id="integration2_20",
-        text=translate("integration2_20"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_21"
-    ),
-    "integration2_21": Question(
-        id="integration2_21",
-        text=translate("integration2_21"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_22"
-    ),
-    "integration2_22": Question(
-        id="integration2_22",
-        text=translate("integration2_22"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration2_23"
-    ),
-    "integration2_23": Question(
-        id="integration2_23",
-        text=translate("integration2_23"),
         media="",
         media_type="",
         options={},
@@ -715,7 +547,7 @@ integration_1 = {
 }
 
 integration_2 = {
-    "integration3_1": Question(
+"integration3_1": Question(
         id="integration3_1",
         text=translate("integration3_1"),
         media="",
