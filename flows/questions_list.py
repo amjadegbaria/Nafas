@@ -1,6 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import grounding_questions, rerouting_questions, body_connection_questions, breath_exc_1, breath_exc_2, breath_exc_3, integration_1, integration_2, task_1, task_2
+from flows.common import grounding_questions, rerouting_questions, body_connection_questions, breath_exc_1, breath_exc_2, breath_exc_3, integration_1, integration_2, task_1, task_2, anger_exc
 import i18n
 
 translate = i18n.Translator('data').translate
@@ -59,7 +59,10 @@ questions = {
         text=translate("integration_questions_2"),
         media="",
         media_type="",
-        options={translate("integration_questions_3"): "integration2", translate("integration_questions_4"): "integration3_1"},
+        options={
+            translate("integration_questions_3"): "integration2",
+            translate("integration_questions_4"): "integration3_1",
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -68,14 +71,17 @@ questions = {
         text=translate("tasks_questions"),
         media="",
         media_type="",
-        options={translate("tasks_questions_1"): "task2_1",
-                 translate("tasks_questions_2"): "task3_1"},
+        options={
+            translate("tasks_questions_1"): "task2_1",
+            translate("tasks_questions_2"): "task3_1",
+            translate("silent_anger"): "anger_exc_1"
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
 }
 
 questions = {**questions, **grounding_questions, **rerouting_questions, **body_connection_questions, **breath_exc_1,
-             **breath_exc_2, **breath_exc_3, **integration_1, **integration_2, **task_1, **task_2}
+             **breath_exc_2, **breath_exc_3, **integration_1, **integration_2, **task_1, **task_2, **anger_exc}
 # Initialize Flow
 questions_list_flow = Flow("questions_list", questions, "questions_list_intro")

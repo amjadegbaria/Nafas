@@ -640,6 +640,65 @@ color_breathing = {
     ),
 }
 
+box_breathing = {
+    "box_breathing_1": Question(
+        id="box_breathing_1",
+        text=translate("box_breathing_1"),
+        media="media/box_breathing_2.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="box_breathing_2"
+    ),
+    "box_breathing_2": Question(
+        id="box_breathing_2",
+        text=translate("box_breathing_2"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="box_breathing_3"
+    ),
+    "box_breathing_3": Question(
+        id="box_breathing_3",
+        text=translate("box_breathing_3"),
+        media="",
+        media_type="",
+        options={
+            translate("OK"): "box_breathing_4"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "box_breathing_4": Question(
+        id="box_breathing_4",
+        text=translate("box_breathing_4"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="box_breathing_5"
+    ),
+    "box_breathing_5": Question(
+        id="box_breathing_5",
+        text=translate("box_breathing_5"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="box_breathing_6"
+    ),
+    "box_breathing_6": Question(
+        id="box_breathing_6",
+        text=translate("box_breathing_6"),
+        media="",
+        media_type="",
+        options={translate("done"): "end_1"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+}
+
 vagus_nerve_stim = {
     "vagus_nerve_stim_1": Question(
         id="vagus_nerve_stim_1",
@@ -702,6 +761,92 @@ vagus_nerve_stim = {
     "vagus_nerve_stim_7": Question(
         id="vagus_nerve_stim_7",
         text=translate("vagus_nerve_stim_7"),
+        media="",
+        media_type="",
+        options={translate("yes"): "end_1", translate("no"): "end_1"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+}
+
+half_salamander = {
+    "half_salamander_1": Question(
+        id="half_salamander_1",
+        text=translate("half_salamander_1"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="half_salamander_2"
+    ),
+    "half_salamander_2": Question(
+        id="half_salamander_2",
+        text=translate("half_salamander_2"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="half_salamander_3"
+    ),
+    "half_salamander_3": Question(
+        id="half_salamander_3",
+        text=translate("half_salamander_3"),
+        media="",
+        media_type="",
+        options={
+            translate("yalla"): "half_salamander_4"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "half_salamander_4": Question(
+        id="half_salamander_4",
+        text=translate("half_salamander_4"),
+        media="",
+        media_type="",
+        options={translate("OK"): "half_salamander_5"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "half_salamander_5": Question(
+        id="half_salamander_5",
+        text=translate("half_salamander_5"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="half_salamander_6"
+    ),
+    "half_salamander_6": Question(
+        id="half_salamander_6",
+        text=translate("half_salamander_6"),
+        media="",
+        media_type="",
+        options={translate("OK"): "half_salamander_7"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "half_salamander_7": Question(
+        id="half_salamander_7",
+        text=translate("half_salamander_7"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="half_salamander_8"
+    ),
+    "half_salamander_8": Question(
+        id="half_salamander_8",
+        text=translate("half_salamander_8"),
+        media="",
+        media_type="",
+        options={translate("OK"): "half_salamander_9"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "half_salamander_9": Question(
+        id="half_salamander_9",
+        text=translate("half_salamander_9"),
         media="",
         media_type="",
         options={translate("yes"): "end_1", translate("no"): "end_1"},
@@ -788,7 +933,7 @@ integration_1 = {
 }
 
 integration_2 = {
-"integration3_1": Question(
+    "integration3_1": Question(
         id="integration3_1",
         text=translate("integration3_1"),
         media="",
@@ -1034,6 +1179,201 @@ task_4 = {
         next_question_id=""
     ),
 }
+
+task_5 = {
+    "task5_1": Question(
+        id="task5_1",
+        text=translate("task5_1"),
+        media="media/anger1.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="task5_2"
+    ),
+    "task5_2": Question(
+        id="task5_2",
+        text=translate("task5_2"),
+        media="media/anger2.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="task5_3"
+    ),
+    "task5_3": Question(
+        id="task5_3",
+        text=translate("task5_3"),
+        media="media/anger3.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="task5_4"
+    ),
+    "task5_4": Question(
+        id="task5_4",
+        text=translate("task5_4"),
+        media="media/anger4.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="task5_5"
+    ),
+    "task5_5": Question(
+        id="task5_5",
+        text=translate("task5_5"),
+        media="media/anger5.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="task5_6"
+    ),
+    "task5_6": Question(
+        id="task5_6",
+        text=translate("task5_6"),
+        media="media/anger6.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="task5_7"
+    ),
+    "task5_7": Question(
+        id="task5_7",
+        text=translate("task5_7"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="end_1"
+    ),
+}
+
+anger_exc = {
+    "anger_exc_1": Question(
+        id="anger_exc_1",
+        text=translate("anger_exc_1"),
+        media="media/anger_exc.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="anger_exc_2"
+    ),
+    "anger_exc_2": Question(
+        id="anger_exc_2",
+        text=translate("anger_exc_2"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="anger_exc_3"
+    ),
+    "anger_exc_3": Question(
+        id="anger_exc_3",
+        text=translate("anger_exc_3"),
+        media="",
+        media_type="",
+        options={
+            translate('room'):"anger_exc_4",
+            translate('bathroom'): "anger_exc_4",
+            translate('nature'): "anger_exc_4",
+            translate('car'): "anger_exc_4",
+            translate('special_place'): "anger_exc_4",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "anger_exc_4": Question(
+        id="anger_exc_4",
+        text=translate("anger_exc_4"),
+        media="",
+        media_type="",
+        options={
+            translate('head'): "anger_exc_5",
+            translate('throat'): "anger_exc_5",
+            translate('chest'): "anger_exc_5",
+            translate('belly'): "anger_exc_5",
+            translate('legs'): "anger_exc_5",
+            translate('other'): "anger_exc_5",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "anger_exc_5": Question(
+        id="anger_exc_5",
+        text=translate("anger_exc_5"),
+        media="",
+        media_type="",
+        options={
+            translate('yes'): "anger_exc_6",
+            translate('no'): "anger_exc_11",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "anger_exc_6": Question(
+        id="anger_exc_6",
+        text=translate("anger_exc_6"),
+        media="",
+        media_type="",
+        options={
+            translate('OK'): "anger_exc_7",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "anger_exc_7": Question(
+        id="anger_exc_7",
+        text=translate("anger_exc_7"),
+        media="",
+        media_type="",
+        options={
+            translate('done'): "anger_exc_8",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "anger_exc_8": Question(
+        id="anger_exc_8",
+        text=translate("anger_exc_8"),
+        media="",
+        media_type="",
+        options={
+            translate('feeling_better'): "anger_exc_9",
+            translate('feeling_same'): "anger_exc_10",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "anger_exc_9": Question(
+        id="anger_exc_9",
+        text=translate("anger_exc_9"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="end_1"
+    ),
+    "anger_exc_10": Question(
+        id="anger_exc_10",
+        text=translate("anger_exc_10"),
+        media="",
+        media_type="",
+        options={
+            translate('yes'): "end_1",
+            translate('no'): "end_1",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "anger_exc_11": Question(
+        id="anger_exc_11",
+        text=translate("anger_exc_11"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="anger_exc_6"
+    ),
+}
+
 sound_healing = {
     "music_exc_1": Question(
         id="music_exc_1",
