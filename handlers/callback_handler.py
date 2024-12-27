@@ -25,7 +25,8 @@ async def handle_callback_query(update: Update, context: CallbackContext) -> Non
 
     # Move to the next question
     question = flow.get_current_question()
-    update_already_answered(user_id, question)
+    answer = update.callback_query.data
+    update_already_answered(user_id, question, answer)
 
     next_question_id = get_next_from_answer(update, question)
 

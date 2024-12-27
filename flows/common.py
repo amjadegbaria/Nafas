@@ -175,7 +175,7 @@ grounding_questions = {
         id="grounding_laying_1",
         text=translate("grounding_laying_1"),
         media="media/grounding_laying.png",
-        media_type="",
+        media_type="image",
         options={translate("OK"): "grounding_laying_2"},
         keyboard_type="inline",
         next_question_id="",
@@ -354,6 +354,81 @@ rerouting_questions = {
         keyboard_type="",
         next_question_id=""
     )
+}
+
+rerouting_questions2 = {
+    "rerouting_exc2": Question(
+        id="rerouting_exc2",
+        text=translate("rerouting_exc2"),
+        media="media/rerouting_1_5.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="rerouting_exc2_1"
+    ),
+    "rerouting_exc2_1": Question(
+        id="rerouting_exc2_1",
+        text=translate("rerouting_exc2_1"),
+        media="",
+        media_type="",
+        options={translate('yalla'): "rerouting_exc2_2"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "rerouting_exc2_2": Question(
+        id="rerouting_exc2_2",
+        text=translate("rerouting_exc2_2"),
+        media="",
+        media_type="",
+        options={translate('OK'): "rerouting_exc2_3"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "rerouting_exc2_3": Question(
+        id="rerouting_exc2_3",
+        text=translate("rerouting_exc2_3"),
+        media="",
+        media_type="",
+        options={translate('OK'): "rerouting_exc2_4"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "rerouting_exc2_4": Question(
+        id="rerouting_exc2_4",
+        text=translate("rerouting_exc2_4"),
+        media="",
+        media_type="",
+        options={translate('OK'): "rerouting_exc2_5"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "rerouting_exc2_5": Question(
+        id="rerouting_exc2_5",
+        text=translate("rerouting_exc2_5"),
+        media="",
+        media_type="",
+        options={translate('OK'): "rerouting_exc2_6"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "rerouting_exc2_6": Question(
+        id="rerouting_exc2_6",
+        text=translate("rerouting_exc2_6"),
+        media="",
+        media_type="",
+        options={translate('OK'): "rerouting_exc2_7"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "rerouting_exc2_7": Question(
+        id="rerouting_exc2_7",
+        text=translate("rerouting_exc2_7"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="inline",
+        next_question_id="end_1"
+    ),
 }
 
 body_connection_questions = {
@@ -567,6 +642,54 @@ breath_exc_3 = {
         media="",
         media_type="",
         options={translate("done"): "end_1"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+}
+
+breath_exc_478 = {
+    "breath_exc_478_1": Question(
+        id="breath_exc_478_1",
+        text=translate("breath_exc_478_1"),
+        media="media/478_breathing.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="breath_exc_478_2"
+    ),
+    "breath_exc_478_2": Question(
+        id="breath_exc_478_2",
+        text=translate("breath_exc_478_2"),
+        media="",
+        media_type="",
+        options={translate('OK'): "breath_exc_478_3"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "breath_exc_478_3": Question(
+        id="breath_exc_478_3",
+        text=translate("breath_exc_478_3"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="breath_exc_478_4"
+    ),
+    "breath_exc_478_4": Question(
+        id="breath_exc_478_4",
+        text=translate("breath_exc_478_4"),
+        media="",
+        media_type="",
+        options={translate('done'): "breath_exc_478_5"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "breath_exc_478_5": Question(
+        id="breath_exc_478_5",
+        text=translate("breath_exc_478_5"),
+        media="",
+        media_type="",
+        options={translate('done'): "end_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -1371,6 +1494,391 @@ anger_exc = {
         options={},
         keyboard_type="",
         next_question_id="anger_exc_6"
+    ),
+}
+
+negative_belief_stories = {
+    "task6_1": Question(
+        id="task6_1",
+        text=translate("task6_1"),
+        media="media/negative_belief_stories.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_2"
+    ),
+    "task6_2": Question(
+        id="task6_2",
+        text=translate("task6_2"),
+        media="https://www.ddinstagram.com/p/C_OVoksuLtU/",
+        media_type="youtube",
+        options={translate('done'): "task6_3"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_3": Question(
+        id="task6_3",
+        text=translate("task6_3"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_4"
+    ),
+    "task6_4": Question(
+        id="task6_4",
+        text=translate("task6_4"),
+        media="media/beliefs.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_5"
+    ),
+    "task6_5": Question(
+        id="task6_5",
+        text=translate("task6_5"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_6"
+    ),
+    "task6_6": Question(
+        id="task6_6",
+        text=translate("task6_6"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_7"
+    ),
+    "task6_7": Question(
+        id="task6_7",
+        text=translate("task6_7"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_8"
+    ),
+    "task6_8": Question(
+        id="task6_8",
+        text=translate("task6_8"),
+        media="",
+        media_type="",
+        options={translate("yalla"): "task6_9"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_9": Question(
+        id="task6_9",
+        text=translate("task6_9"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_10"
+    ),
+    "task6_10": Question(
+        id="task6_10",
+        text=translate("task6_10"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_11"
+    ),
+    "task6_11": Question(
+        id="task6_11",
+        text=translate("task6_11"),
+        media="",
+        media_type="",
+        options={translate("OK"): "task6_12"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_12": Question(
+        id="task6_12",
+        text=translate("task6_12"),
+        media="",
+        media_type="",
+        options={
+            translate("unlovable"): "task6_13",
+            translate("incapable"): "task6_13",
+            translate("weak"): "task6_13",
+            translate("loser"): "task6_13",
+            translate("stupid"): "task6_13",
+            translate("ugly"): "task6_13",
+            translate("lazy"): "task6_13",
+            translate("unimportant"): "task6_13",
+            translate("not_enough"): "task6_13",
+            translate("not_talented"): "task6_13",
+            translate("worthless"): "task6_13",
+            translate("hopeless"): "task6_13",
+            translate("boring"): "task6_13",
+            translate("scared"): "task6_13",
+            translate("unaccepted"): "task6_13",
+            translate("lier"): "task6_13",
+            translate("incompetent"): "task6_13",
+            translate("helpless"): "task6_13",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_13": Question(
+        id="task6_13",
+        text=translate("task6_13"),
+        media="",
+        media_type="",
+        options={
+            translate("burden"): "task6_14",
+            translate("embarrassing"): "task6_14",
+            translate("selfish"): "task6_14",
+            translate("incompetent"): "task6_14",
+            translate("unimportant"): "task6_14",
+            translate("untrustworthy"): "task6_14",
+            translate("clingy"): "task6_14",
+            translate("fake"): "task6_14",
+            translate("critical"): "task6_14",
+            translate("arrogant"): "task6_14",
+            translate("narrow-minded"): "task6_14",
+            translate("ridiculous"): "task6_14",
+            translate("not funny"): "task6_14",
+            translate("immature"): "task6_14",
+            translate("ignorant"): "task6_14",
+            translate("annoying"): "task6_14",
+            translate("distracting"): "task6_14",
+            translate("uninteresting"): "task6_14",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_14": Question(
+        id="task6_14",
+        text=translate("task6_14"),
+        media="",
+        media_type="",
+        options={
+            translate("failing"): "task6_15",
+            translate("struggling"): "task6_15",
+            translate("late"): "task6_15",
+            translate("worried"): "task6_15",
+            translate("broken"): "task6_15",
+            translate("lost"): "task6_15",
+            translate("lonely"): "task6_15",
+            translate("broke"): "task6_15",
+            translate("not ready"): "task6_15",
+            translate("wrong"): "task6_15",
+            translate("hesitant"): "task6_15",
+            translate("stressed"): "task6_15",
+            translate("scared"): "task6_15",
+            translate("confused"): "task6_15",
+            translate("neglected"): "task6_15",
+            translate("walking for others"): "task6_15",
+            translate("irresponsible"): "task6_15",
+            translate("not focused"): "task6_15",
+            translate("ignoring"): "task6_15",
+            translate("disappointing"): "task6_15"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_15": Question(
+        id="task6_15",
+        text=translate("task6_15"),
+        media="",
+        media_type="",
+        options={
+            translate("successful"): "task6_16",
+            translate("happy"): "task6_16",
+            translate("find_love"): "task6_16",
+            translate("enjoy_life"): "task6_16"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_16": Question(
+        id="task6_16",
+        text=translate("task6_16"),
+        media="",
+        media_type="",
+        options={
+            translate("OK"): "task6_17",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_17": Question(
+        id="task6_17",
+        text=translate("task6_17"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_18"
+    ),
+    "task6_18": Question(
+        id="task6_18",
+        text=translate("task6_18"),
+        media="",
+        media_type="",
+        options={
+            translate("yalla"): "task6_19"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_19": Question(
+        id="task6_19",
+        text=translate("task6_19"),
+        media="",
+        media_type="",
+        options={
+            translate("OK"): "task6_20"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_20": Question(
+        id="task6_20",
+        text=translate("task6_20"),
+        media="",
+        media_type="",
+        options={
+            translate("rip"): "task6_21"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_21": Question(
+        id="task6_21",
+        text=translate("task6_21"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="task6_22"
+    ),
+    "task6_22": Question(
+        id="task6_22",
+        text=translate("task6_22"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="end_1"
+    ),
+}
+
+acknowledgement_question = {
+    "acknowledgement_1": Question(
+        id="acknowledgement_1",
+        text=translate("acknowledgement_1"),
+        media="",
+        media_type="",
+        options={
+            translate('happy'):"acknowledgement_happy",
+            translate('disgusted'): "acknowledgement_disgusted",
+            translate('sad'): "acknowledgement_sad",
+            translate('scared'): "acknowledgement_scared",
+            translate('angry'): "acknowledgement_angry",
+            translate('surprised'): "acknowledgement_surprised",
+        },
+        keyboard_type="",
+        next_question_id=""
+    ),
+    "acknowledgement_happy": Question(
+        id="acknowledgement_happy",
+        text=translate("acknowledgement_happy"),
+        media="",
+        media_type="",
+        options={
+            translate('proud'): "acknowledgement_2",
+            translate('optimistic'): "acknowledgement_2",
+            translate('acceptable'): "acknowledgement_2",
+            translate('cheerful'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "acknowledgement_disgusted": Question(
+        id="acknowledgement_disgusted",
+        text=translate("acknowledgement_disgusted"),
+        media="",
+        media_type="",
+        options={
+            translate('disappointed'): "acknowledgement_2",
+            translate('aversion'): "acknowledgement_2",
+            translate('unaccepted'): "acknowledgement_2",
+            translate('avoidant'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "acknowledgement_sad": Question(
+        id="acknowledgement_sad",
+        text=translate("acknowledgement_sad"),
+        media="",
+        media_type="",
+        options={
+            translate('guilty'): "acknowledgement_2",
+            translate('feeling_low'): "acknowledgement_2",
+            translate('lonely'): "acknowledgement_2",
+            translate('bored'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "acknowledgement_scared": Question(
+        id="acknowledgement_scared",
+        text=translate("acknowledgement_scared"),
+        media="",
+        media_type="",
+        options={
+            translate('freaking'): "acknowledgement_2",
+            translate('anxious'): "acknowledgement_2",
+            translate('rejected'): "acknowledgement_2",
+            translate('unsafe'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "acknowledgement_angry": Question(
+        id="acknowledgement_angry",
+        text=translate("acknowledgement_angry"),
+        media="",
+        media_type="",
+        options={
+            translate('very_angry'): "acknowledgement_2",
+            translate('hurt'): "acknowledgement_2",
+            translate('threatened'): "acknowledgement_2",
+            translate('separated'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "acknowledgement_surprised": Question(
+        id="acknowledgement_happy",
+        text=translate("acknowledgement_happy"),
+        media="",
+        media_type="",
+        options={
+            translate('shocked'): "acknowledgement_2",
+            translate('confused'): "acknowledgement_2",
+            translate('amazed'): "acknowledgement_2",
+            translate('terrified'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "acknowledgement_2": Question(
+        id="acknowledgement_2",
+        text=translate("acknowledgement_2"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id=""
     ),
 }
 

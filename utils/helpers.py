@@ -8,13 +8,13 @@ def already_answered(user_id, question):
     return False
 
 
-def update_already_answered(user_id, question):
+def update_already_answered(user_id, question, answer):
     q_id = question.get_id()
     if answered_questions.get(user_id, None):
-        answered_questions[user_id].update({q_id: q_id})
+        answered_questions[user_id].update({q_id: answer})
     else:
         answered_questions.update({user_id: {}})
-        answered_questions[user_id].update({q_id: q_id})
+        answered_questions[user_id].update({q_id: answer})
 
 
 def get_chat_id(update):
