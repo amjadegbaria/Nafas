@@ -14,7 +14,8 @@ async def menu_flow(update, context):
     active_users_map.pop(user_id)
     active_users_map[user_id] = flow
     start_flow(user_id, flow.get_id(), flow.get_first_question_id())
-    answered_questions.pop(user_id)
+    if answered_questions.get(user_id):
+        answered_questions.pop(user_id)
     flow.start_flow(flow.get_first_question_id())
     # Process the first question in the flow
     await process_question(update, context, flow)
