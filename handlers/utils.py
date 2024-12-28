@@ -103,7 +103,7 @@ def get_user_flow(user_id):
                 active_users_map[user_id] = flows.get(next_flow_id).duplicate_flow()
             return active_users_map[user_id]
 
-    active_users_map[user_id] = flows.get(initial_flow).duplicate_flow()
+    active_users_map[user_id] = flows.get(initial_flow).duplicate_flow('intro1')
     return active_users_map[user_id]
 
 

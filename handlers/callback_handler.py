@@ -26,11 +26,11 @@ async def handle_callback_query(update: Update, context: CallbackContext) -> Non
     # Move to the next question
     question = flow.get_current_question()
     answer = update.callback_query.data
-    update_already_answered(user_id, question, answer)
+
 
     next_question_id = get_next_from_answer(update, question)
 
-    callback = question.get_options().get(update.callback_query.data)
+    callback = question.get_options().get(answer)
     if callable(callback):  # If the next question is a callable, execute it
         result = await next_question_id(update, context)
 
@@ -39,7 +39,7 @@ async def handle_callback_query(update: Update, context: CallbackContext) -> Non
         else:
             next_question_id = question.next_question_id
 
-
+    update_already_answered(user_id, question, answer)
     # Update flow progress
     update_user_answer(update)
     is_completed(flow, user_id)  # Check if flow is completed

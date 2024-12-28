@@ -1,6 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import grounding_questions, rerouting_questions, body_connection_questions, breath_exc_1, breath_exc_2, breath_exc_3, integration_1, integration_2, task_1, task_2, anger_exc
+from flows.common import grounding_questions, rerouting_questions, body_connection_questions, psychological_sigh, breath_exc_2, breath_exc_3, integration_2, integration_3, task_2, task_3, anger_exc
 import i18n
 
 translate = i18n.Translator('data').translate
@@ -81,7 +81,7 @@ questions = {
     ),
 }
 
-questions = {**questions, **grounding_questions, **rerouting_questions, **body_connection_questions, **breath_exc_1,
-             **breath_exc_2, **breath_exc_3, **integration_1, **integration_2, **task_1, **task_2, **anger_exc}
+questions = {**questions, **grounding_questions, **rerouting_questions, **body_connection_questions, **psychological_sigh,
+             **breath_exc_2, **breath_exc_3, **integration_2, **integration_3, **task_2, **task_3, **anger_exc}
 # Initialize Flow
 questions_list_flow = Flow("questions_list", questions, "questions_list_intro")
