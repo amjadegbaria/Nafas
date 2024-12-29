@@ -1,6 +1,8 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import grounding_questions, rerouting_questions, body_connection_questions, psychological_sigh, breath_exc_2, breath_exc_3, integration_2, integration_3, task_2, task_3, anger_exc
+from flows.common import grounding_questions, rerouting_questions, rerouting_questions2, body_connection,\
+    psychological_sigh, breath_exc_2, box_breathing, breath_exc_478, color_breathing, negative_belief_stories,\
+    breath_exc_3, integration_2, integration_3, task_2, task_3, anger_exc, emotion_release, task_4, task_1, task_5
 import i18n
 
 translate = i18n.Translator('data').translate
@@ -11,10 +13,12 @@ questions = {
         text=translate("questions_list_intro"),
         media="",
         media_type="",
-        options={translate("questions_list_intro_1"): "grounding_questions",
-                 translate("questions_list_intro_2"):"stress_reduction_questions",
-                 translate("questions_list_intro_3"): "integration_questions",
-                 translate("questions_list_intro_4"): "tasks_questions"},
+        options={
+            translate("questions_list_intro_1"): "grounding_questions",
+            translate("questions_list_intro_2"):"stress_reduction_questions",
+            translate("questions_list_intro_3"): "integration_questions",
+            translate("questions_list_intro_4"): "tasks_questions"
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -23,7 +27,12 @@ questions = {
         text=translate("grounding_questions"),
         media="",
         media_type="",
-        options={translate("grounding_questions_1"): "grounding_question", translate("rerouting_exc"): "rerouting_exc_1", translate("flow2_exc2"): "flow2_exc2_1"},
+        options={
+            translate("grounding_questions_1"): "grounding_question",
+            translate("rerouting_exc"): "rerouting_exc_1",
+            translate("rerouting_exc2_name"): "rerouting_exc2",
+            translate("flow2_exc2"): "flow2_exc2_1"
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -32,39 +41,31 @@ questions = {
         text=translate("stress_reduction_questions"),
         media="",
         media_type="",
-        options={translate("stress_reduction_questions_1"): "breath_exc_1", translate("stress_reduction_questions_2"): "breath2_exc_1", translate("stress_reduction_questions_3"): "breath3_exc_1"},
+        options={
+            translate("stress_reduction_questions_1"): "breath_exc_1",
+            translate("stress_reduction_questions_2"): "breath2_exc_1",
+            translate("stress_reduction_questions_3"): "breath3_exc_1",
+            translate("stress_reduction_questions_4"): "breath_exc_478_1",
+            translate("stress_reduction_questions_5"): "color_breathing_1",
+            translate("stress_reduction_questions_6"): "box_breathing_1",
+            translate("stress_reduction_questions_7"): "vagus_nerve_stim_1",
+            translate("stress_reduction_questions_8"): "half_salamander_1",
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
     "integration_questions": Question(
         id="integration_questions",
-        text=translate("integration1_1"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration_questions_1"
-    ),
-    "integration_questions_1": Question(
-        id="integration_questions_1",
-        text=translate("integration1_2"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration_questions_2"
-    ),
-    "integration_questions_2": Question(
-        id="integration_questions_2",
-        text=translate("integration_questions_2"),
+        text=translate("integration_questions"),
         media="",
         media_type="",
         options={
-            translate("integration_questions_3"): "integration2",
-            translate("integration_questions_4"): "integration3_1",
+            translate("integration_questions_2"): "integration2",
+            translate("integration_questions_3"): "integration3_1",
+            translate("emotion_release"): "emotion_release_1",
         },
         keyboard_type="inline",
-        next_question_id=""
+        next_question_id="integration_questions_1"
     ),
     "tasks_questions": Question(
         id="tasks_questions",
@@ -72,8 +73,11 @@ questions = {
         media="",
         media_type="",
         options={
-            translate("tasks_questions_1"): "task2_1",
-            translate("tasks_questions_2"): "task3_1",
+            translate("tasks_questions_1"): "task1_1",
+            translate("tasks_questions_2"): "task2_1",
+            translate("tasks_questions_3"): "task3_1",
+            translate("tasks_questions_4"): "task4_1",
+            translate("tasks_questions_6"): "task6_1",
             translate("silent_anger"): "anger_exc_1"
         },
         keyboard_type="inline",
@@ -81,7 +85,9 @@ questions = {
     ),
 }
 
-questions = {**questions, **grounding_questions, **rerouting_questions, **body_connection_questions, **psychological_sigh,
-             **breath_exc_2, **breath_exc_3, **integration_2, **integration_3, **task_2, **task_3, **anger_exc}
+questions = {**questions, **grounding_questions, **rerouting_questions, **body_connection, **psychological_sigh,
+             **breath_exc_2, **breath_exc_3, **integration_2, **integration_3, **task_2, **task_3, **anger_exc,
+             **emotion_release, **rerouting_questions2, **body_connection, **box_breathing,
+             **breath_exc_478, **color_breathing, **negative_belief_stories, **task_4, **task_1, **task_5}
 # Initialize Flow
 questions_list_flow = Flow("questions_list", questions, "questions_list_intro")

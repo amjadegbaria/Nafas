@@ -2,7 +2,7 @@ import asyncio
 from classes.Question import Question
 from classes.Flow import Flow
 from utils.helpers import timer
-from flows.common import intro, stress_question, grounding_questions, breath_exc_1, countdown, stress_question_end, sound_healing, integration_1, task_1
+from flows.common import intro, stress_question, grounding_questions, psychological_sigh, countdown, stress_question_end, sound_healing, integration_3_intro, task_1
 
 import i18n
 
@@ -119,7 +119,7 @@ questions = {
 
 }
 
-questions = {**intro, **stress_question, **grounding_questions, **breath_exc_1, **countdown, **sound_healing, **stress_question_end, **integration_1, **task_1, **questions}
+questions = {**intro, **stress_question, **grounding_questions, **psychological_sigh, **countdown, **sound_healing, **stress_question_end, **integration_3_intro, **task_1, **questions}
 
 # Initialize Flow
 flow = Flow("flow1", questions, "alt_into")
