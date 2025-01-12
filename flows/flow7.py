@@ -34,6 +34,15 @@ questions = {
         keyboard_type="inline",
         next_question_id=""
     ),
+    "grounding_result_1": Question(
+        id="grounding_result_1",
+        text=translate("grounding_result_1"),
+        media="",
+        media_type="",
+        options={translate("yes"): "grounding_result_1_yes", translate("no"): "grounding_result_1_no"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
     "grounding_result_1_yes": Question(
         id="grounding_result_1_yes",
         text=translate("grounding_result_1_yes"),

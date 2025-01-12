@@ -2,7 +2,7 @@ import logging
 import asyncio
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 from handlers.callback_handler import handle_callback_query
-from handlers.command_handler import start, restart, default, menu
+from handlers.command_handler import restart, default, menu
 from config import TOKEN
 
 
@@ -14,7 +14,7 @@ application = Application.builder().token(TOKEN).build()
 
 def main() -> None:
     # Add handlers
-    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("start", default))
     application.add_handler(CommandHandler("restart", restart))
     application.add_handler(CommandHandler("menu", menu))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, default))

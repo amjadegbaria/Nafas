@@ -29,8 +29,7 @@ def check_user_last_interaction(user_data):
 # if the user completed the flow for today, return true
 def is_flow_done_today(user_data):
     completed_flows = user_data.get('completed_flows')
-    active_flow = user_data.get('active_flow')
-    if not active_flow and completed_flows and completed_flows[-1]:
+    if completed_flows and completed_flows[-1]:
         last_flow = completed_flows[-1]
         last_interaction = last_flow['last_interaction'].strftime("%Y-%m-%dT%H:%M:%S.%f%z")
         date = datetime.fromisoformat(last_interaction)

@@ -10,6 +10,11 @@ from flows.questions_list import questions_list_flow
 async def start(update: Update, context: CallbackContext) -> None:
     """Handle the /start command."""
     user_id = update.effective_user.id
+    reset_user_progress(user_id)  # clean the restart flow from the DB
+    if active_users_map.get(user_id):
+        active_users_map.pop(user_id)
+    if answered_questions.get(user_id):
+        answered_questions.pop(user_id)
 
     # Initialize the user's flow
     flow = get_user_flow(user_id)
@@ -24,16 +29,13 @@ async def start(update: Update, context: CallbackContext) -> None:
 async def default(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.message.from_user.id
     user_data = get_user_data(user_id)
-    flow = get_user_flow(user_id)
 
-    if check_user_last_interaction(user_data):
-        await trigger_restart_flow(update, context)
-    elif is_flow_done_today(user_data):
+    if is_flow_done_today(user_data):
         await trigger_menu_flow(update, context)
+    elif check_user_last_interaction(user_data):
+        await trigger_restart_flow(update, context)
     elif not answered_questions.get(user_id, None):  # flow did not start yet
         await start(update, context)
-    elif flow.is_completed():  # if the user reaches the last question, restart
-        await restart(update, context)
     else:
         await process_question(update, context)
 
@@ -41,11 +43,15 @@ async def default(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def restart(update: Update, context: CallbackContext) -> None:
     user_id = update.effective_user.id
     reset_user_progress(user_id)  # clean the restart flow from the DB
-    active_users_map.pop(user_id)
+    if active_users_map.get(user_id):
+        active_users_map.pop(user_id)
+    if answered_questions.get(user_id):
+        answered_questions.pop(user_id)
+
     flow = get_user_flow(user_id)
     flow.start_flow(flow.get_first_question_id())
     start_flow(user_id, flow.get_id(), flow.get_first_question_id())
-    answered_questions.pop(user_id)
+
     # Process the first question in the flow
     await process_question(update, context, flow)
 
