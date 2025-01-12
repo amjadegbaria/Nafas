@@ -18,11 +18,6 @@ async def handle_callback_query(update: Update, context: CallbackContext) -> Non
         await trigger_restart_flow(update, context)
         return
 
-    # Check if the user have finished his flow for today, if yes show the menu
-    if flow.id != 'menu_flow' and is_flow_done_today(user_data):
-        await trigger_menu_flow(update, context)
-        return
-
     # Move to the next question
     question = flow.get_current_question()
     answer = update.callback_query.data

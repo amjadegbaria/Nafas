@@ -377,27 +377,9 @@ grounding_questions = {
         text=translate("grounding_result_1"),
         media="",
         media_type="",
-        options={translate("yes"): "grounding_result_1_yes", translate("no"): "grounding_result_1_no"},
+        options={translate("yes"): "end_1", translate("no"): "end_1"},
         keyboard_type="inline",
         next_question_id=""
-    ),
-    "grounding_result_1_yes": Question(
-        id="grounding_result_1_yes",
-        text=translate("grounding_result_1_yes"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="end_1"
-    ),
-    "grounding_result_1_no": Question(
-        id="grounding_result_1_no",
-        text=translate("grounding_result_1_no"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="end_1"
     ),
     "end_1": Question(
         id="end_1",
@@ -746,7 +728,7 @@ breath_exc_3 = {
         text=translate("breath3_exc_2_2"),
         media="",
         media_type="",
-        options={translate("start"): timer_60},
+        options={translate("start_counting"): timer_60},
         keyboard_type="inline",
         next_question_id="breath3_exc_2_3"
     ),
@@ -806,7 +788,7 @@ breath_exc_3 = {
         text=translate("breath3_exc_7"),
         media="",
         media_type="",
-        options={translate("start"): timer_60},
+        options={translate("start_counting"): timer_60},
         keyboard_type="inline",
         next_question_id="breath3_exc_7_1"
     ),
@@ -833,7 +815,7 @@ breath_exc_3 = {
         text=translate("breath3_exc_9"),
         media="",
         media_type="",
-        options={translate("start"): timer_120},
+        options={translate("start_counting"): timer_120},
         keyboard_type="inline",
         next_question_id="breath3_exc_9_1"
     ),
