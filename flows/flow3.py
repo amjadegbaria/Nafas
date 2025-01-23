@@ -38,9 +38,9 @@ questions = {
         text=translate("grounding_result_1_no"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="breath3_exc_1"
+        options={translate('OK'):"breath3_exc_1"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "breath3_exc_9_1": Question(
         id="breath3_exc_9_1",
@@ -96,7 +96,7 @@ questions = {
         text=translate("emotions_12"),
         media="",
         media_type="",
-        options={translate("done"): "task3_1"},
+        options={translate("OK"): "task3_1"},
         keyboard_type="inline",
         next_question_id=""
     ),

@@ -39,9 +39,9 @@ questions = {
         text=translate("grounding_result_1_no"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="breath2_exc_1"
+        options={translate('OK'):"breath2_exc_1"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "breath2_exc_4": Question(
         id="breath2_exc_4",
@@ -73,7 +73,7 @@ questions = {
     "music_exc_5": Question(
         id="music_exc_5",
         text=translate("music_exc_5"),
-        media="https://www.youtube.com/watch?v=aS41f-yM4M8&list=OLAK5uy_lBLi4hCNijjVXo0gQrr0WaeTNLrrczgUI&index=3",
+        media="https://youtu.be/FX_Qv96_x2c?si=6A4gHDP--P09UOy2",
         media_type="youtube",
         options={translate('done'): "stress_question_end"},
         keyboard_type="inline",
@@ -124,9 +124,9 @@ questions = {
         text=translate("integration2_7"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="task2_1"
+        options={translate('OK'): "task2_1"},
+        keyboard_type="inline",
+        next_question_id=""
     )
 }
 

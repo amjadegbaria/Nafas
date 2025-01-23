@@ -40,9 +40,9 @@ questions = {
         text=translate("grounding_result_1_no"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="box_breathing_1"
+        options={translate('OK'): "box_breathing_1"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "box_breathing_6": Question(
         id="box_breathing_6",
