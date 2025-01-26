@@ -9,7 +9,8 @@ from handlers.utils import process_question, get_user_flow, start_flow
 async def restart_flow(update, context):
     user_id = update.effective_user.id
     reset_user_progress(user_id)  # clean the restart flow from the DB
-    active_users_map.pop(user_id)
+    if active_users_map.get(user_id):
+        active_users_map.pop(user_id)
     if answered_questions.get(user_id):
         answered_questions.pop(user_id)
 

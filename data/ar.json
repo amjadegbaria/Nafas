@@ -134,7 +134,7 @@
   "half_salamander_9": "رائع! حرّك راسك بلطف لليسار واليمين . \nلاحظت اذا شعرت براحة اكبر او تحسين بالحركة؟",
 
   "transition_1": " رائع!يللا عالتمرين الجاي\n\n",
-  "rerouting_exc": "إعادة التوجيه (لون, صوت, ملمس)",
+  "rerouting_exc": "إعادة التوجيه",
   "rerouting_exc_1": "\uD83D\uDEA9لما منكون بضغط، افكارنا بتكون مشوشة ومخربطة وبكون صعب علينا نركز\nبالتمرين القادم رح نساعدك تستعيد سيطرتك على افكارك وانتباهك.",
   "rerouting_exc_2": "التمرين الثالث \n \uD83C\uDFAFاسم التمرين : إعادة التوجيه (لون, صوت, ملمس)",
   "rerouting_exc_3": "\uD83D\uDCA1هدف التمرين: \n تحويل تركيزنا من عقلنا جوا, للمحيط اللي حوالينا برا",
@@ -420,10 +420,9 @@
   "menu_button": "\uD83D\uDCCB قائمة التمارين",
 
   "questions_list_intro": "اختر نوع التمرين المفضل عليك:",
-  "questions_list_intro_1": "\uD83D\uDC86\uD83C\uDFFB\u200D♀\uFE0F تمارين لرفع التركيز",
-  "questions_list_intro_2": "\uD83E\uDDD8\uD83C\uDFFB تمارين تخفيف التوتر",
-  "questions_list_intro_3": "\uD83E\uDEC2 تمارين التعامل مع المشاعر",
-  "questions_list_intro_4": "\uD83D\uDCDD مهام جانبية",
+  "questions_list_intro_1": "\uD83D\uDC86\uD83C\uDFFB\u200D♀\uFE0F تمارين إعادة التوازن",
+  "questions_list_intro_2": "\uD83E\uDDD8\uD83C\uDFFB تمارين التنفس",
+  "questions_list_intro_3": "\uD83E\uDEC2 التعامل مع المشاعر",
 
   "grounding_questions": "حلو، يبدو انك حابب تتركز شوي. \n اختر واحد من التمارين:",
   "grounding_questions_1": "الارتكاز",

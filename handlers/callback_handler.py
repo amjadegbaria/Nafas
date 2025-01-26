@@ -1,6 +1,6 @@
 from telegram import Update
 from telegram.ext import CallbackContext
-from handlers.flow_handler import trigger_restart_flow, trigger_menu_flow
+from handlers.flow_handler import trigger_restart_flow
 from database.queries import get_user_data
 from handlers.flow_handler import check_user_last_interaction, process_question, is_flow_done_today
 from handlers.utils import update_user_answer, is_completed, get_next_from_answer, get_user_flow
