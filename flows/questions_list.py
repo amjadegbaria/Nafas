@@ -17,7 +17,6 @@ questions = {
             translate("questions_list_intro_1"): "grounding_questions",
             translate("questions_list_intro_2"):"stress_reduction_questions",
             translate("questions_list_intro_3"): "integration_questions",
-            translate("questions_list_intro_4"): "tasks_questions"
         },
         keyboard_type="inline",
         next_question_id=""
@@ -29,9 +28,10 @@ questions = {
         media_type="",
         options={
             translate("grounding_questions_1"): "grounding_question",
+            translate("stress_reduction_questions_8"): "half_salamander_1",
+            translate("stress_reduction_questions_7"): "vagus_nerve_stim_1",
             translate("rerouting_exc"): "rerouting_exc_1",
             translate("rerouting_exc2_name"): "rerouting_exc2",
-            translate("flow2_exc2"): "flow2_exc2_1"
         },
         keyboard_type="inline",
         next_question_id=""
@@ -42,14 +42,12 @@ questions = {
         media="",
         media_type="",
         options={
+            translate("tasks_questions_2"): "task2_1",
             translate("stress_reduction_questions_1"): "breath_exc_1",
-            translate("stress_reduction_questions_2"): "breath2_exc_1",
             translate("stress_reduction_questions_3"): "breath3_exc_1",
             translate("stress_reduction_questions_4"): "breath_exc_478_1",
             translate("stress_reduction_questions_5"): "color_breathing_1",
             translate("stress_reduction_questions_6"): "box_breathing_1",
-            translate("stress_reduction_questions_7"): "vagus_nerve_stim_1",
-            translate("stress_reduction_questions_8"): "half_salamander_1",
         },
         keyboard_type="inline",
         next_question_id=""
@@ -60,28 +58,12 @@ questions = {
         media="",
         media_type="",
         options={
-            translate("integration_questions_2"): "integration2",
-            translate("integration_questions_3"): "integration1_1",
             translate("emotion_release"): "emotion_release_1",
+            translate("silent_anger"): "anger_exc_1",
+            translate("tasks_questions_6"): "task6_1",
         },
         keyboard_type="inline",
         next_question_id="integration_questions_1"
-    ),
-    "tasks_questions": Question(
-        id="tasks_questions",
-        text=translate("tasks_questions"),
-        media="",
-        media_type="",
-        options={
-            translate("tasks_questions_1"): "task1_1",
-            translate("tasks_questions_2"): "task2_1",
-            translate("tasks_questions_3"): "task3_1",
-            translate("tasks_questions_4"): "task4_1",
-            translate("tasks_questions_6"): "task6_1",
-            translate("silent_anger"): "anger_exc_1"
-        },
-        keyboard_type="inline",
-        next_question_id=""
     ),
 }
 

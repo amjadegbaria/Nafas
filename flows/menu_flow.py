@@ -5,6 +5,7 @@ from database.queries import reset_user_progress
 from utils.constants import active_users_map, answered_questions
 from handlers.utils import process_question, start_flow
 from flows.questions_list import questions_list_flow
+from flows.restart_flow import restart_flow
 
 
 async def menu_flow(update, context):
@@ -28,7 +29,7 @@ questions = {
         text=translate("menu_flow_1"),
         media="",
         media_type="",
-        options={translate("menu_button"): menu_flow},
+        options={translate("menu_button"): menu_flow, translate("restart_button"): restart_flow},
         keyboard_type="inline",
         next_question_id=""
     ),

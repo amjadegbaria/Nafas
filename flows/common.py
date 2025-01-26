@@ -1,5 +1,5 @@
 import asyncio
-from utils.helpers import timer
+from utils.helpers import timer, complete_the_sentence
 from classes.Question import Question
 import i18n
 
@@ -2187,13 +2187,13 @@ negative_belief_stories = {
         media="",
         media_type="",
         options={
-            translate("successful"): "task6_16",
-            translate("happy"): "task6_16",
-            translate("find_love"): "task6_16",
-            translate("enjoy_life"): "task6_16"
+            translate("successful"): complete_the_sentence,
+            translate("happy"): complete_the_sentence,
+            translate("find_love"): complete_the_sentence,
+            translate("enjoy_life"): complete_the_sentence
         },
         keyboard_type="inline",
-        next_question_id=""
+        next_question_id="task6_16"
     ),
     "task6_16": Question(
         id="task6_16",
@@ -2221,10 +2221,10 @@ negative_belief_stories = {
         media="",
         media_type="",
         options={
-            translate("yalla"): "task6_19"
+            translate("yalla"): complete_the_sentence
         },
         keyboard_type="inline",
-        next_question_id=""
+        next_question_id="task6_19"
     ),
     "task6_19": Question(
         id="task6_19",

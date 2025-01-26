@@ -7,22 +7,6 @@ import i18n
 
 translate = i18n.Translator('data').translate
 
-async def complete_the_sentence(update, context):
-    # Retrieve answers from the answered_questions dictionary
-    answers = answered_questions[update.effective_user.id]
-    ans1 = answers.get("task6_12")
-    ans2 = answers.get("task6_13")
-    ans3 = answers.get("task6_14")
-    ans4 = answers.get("task6_15")
-
-    # Translate the sentence, and use f-string formatting
-    text = translate("task6_23")  # Here you fetch the static translation text
-    formatted_text = text.format(ans1=ans1, ans2=ans2, ans3=ans3, ans4=ans4)  # Format the string dynamically
-
-    # Send the formatted text to the chat
-    await context.bot.send_message(get_chat_id(update), text=formatted_text)
-    return True
-
 
 questions = {
     "alt_into": Question(
