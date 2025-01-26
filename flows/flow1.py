@@ -45,9 +45,9 @@ questions = {
         text=translate("grounding_result_1_no"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="breath_exc_1"
+        options={translate('OK'):"breath_exc_1"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "breath_exc_4": Question(
         id="breath_exc_4",
@@ -119,11 +119,11 @@ questions = {
     "integration1_2": Question(
         id="integration1_2",
         text=translate("integration1_2"),
-        media="https://www.youtube.com/shorts/KO-WbOGDbYk",
+        media="https://www.youtube.com/shorts/oyl4H8lyTvE",
         media_type="youtube",
-        options={},
-        keyboard_type="",
-        next_question_id="task1_1"
+        options={translate('done'):"task1_1"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
 
 }

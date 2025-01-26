@@ -2,7 +2,9 @@ from utils.constants import answered_questions
 import asyncio
 
 def already_answered(user_id, question):
-    q_id = question.get_id()
+    q_id = ""
+    if question:
+        q_id = question.get_id()
     if answered_questions.get(user_id, None) and answered_questions.get(user_id).get(q_id):
         return True
     return False

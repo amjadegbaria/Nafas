@@ -10,10 +10,13 @@ async def restart_flow(update, context):
     user_id = update.effective_user.id
     reset_user_progress(user_id)  # clean the restart flow from the DB
     active_users_map.pop(user_id)
+    if answered_questions.get(user_id):
+        answered_questions.pop(user_id)
+
     flow = get_user_flow(user_id)
     flow.start_flow(flow.get_first_question_id())
     start_flow(user_id, flow.get_id(), flow.get_first_question_id())
-    answered_questions.pop(user_id)
+
     RESTART_FLOW.start_flow(RESTART_FLOW.get_first_question_id())
     # Process the first question in the flow
     await process_question(update, context, flow)

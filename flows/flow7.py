@@ -57,9 +57,9 @@ questions = {
         text=translate("grounding_result_1_no"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="half_salamander_1"
+        options={translate('OK'): "half_salamander_1"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "half_salamander_9": Question(
         id="half_salamander_9",

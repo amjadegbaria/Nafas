@@ -59,9 +59,9 @@ questions = {
         text=translate("grounding_result_1_no"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="rerouting_exc2"
+        options={translate('OK'): "rerouting_exc2"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "rerouting_exc2_7": Question(
         id="rerouting_exc2_7",

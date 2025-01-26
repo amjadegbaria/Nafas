@@ -139,7 +139,10 @@ stress_question = {
         text=translate("stress_question"),
         media="",
         media_type="",
-        options={translate('stress_option1'): "stress1_1", translate('stress_option2'): "stress1_2", translate('stress_option3'): "stress1_3"},
+        options={"1": "stress1_3", "2": "stress1_3", "3": "stress1_3", "4": "stress1_3", "5": "stress1_3",
+                 "6": "stress1_2",
+                 "7": "stress1_2", "8": "stress1_2", "9": "stress1_1",
+                 "10": "stress1_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -149,7 +152,7 @@ stress_question = {
         media="",
         media_type="",
         options={},
-        keyboard_type="inline",
+        keyboard_type="",
         next_question_id="exec_transition_question"
     ),
     "stress1_2": Question(
@@ -158,7 +161,7 @@ stress_question = {
         media="",
         media_type="",
         options={},
-        keyboard_type="inline",
+        keyboard_type="",
         next_question_id="exec_transition_question"
     ),
     "stress1_3": Question(
@@ -167,7 +170,7 @@ stress_question = {
         media="",
         media_type="",
         options={},
-        keyboard_type="inline",
+        keyboard_type="",
         next_question_id="exec_transition_question"
     ),
     "exec_transition_question": Question(
@@ -852,11 +855,11 @@ breath_exc_478 = {
     "breath_exc_478_3": Question(
         id="breath_exc_478_3",
         text=translate("breath_exc_478_3"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="breath_exc_478_4"
+        media="media/Tongue_breathing.png",
+        media_type="image",
+        options={translate('OK'): "breath_exc_478_4"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "breath_exc_478_4": Question(
         id="breath_exc_478_4",
@@ -1107,7 +1110,7 @@ vagus_nerve_stim = {
     "vagus_nerve_stim_6": Question(
         id="vagus_nerve_stim_6",
         text=translate("vagus_nerve_stim_6"),
-        media="https://www.ddinstagram.com/p/DBcbG-RyHrw/",
+        media="https://youtube.com/shorts/Q1ydzhrJy8c",
         media_type="youtube",
         options={translate("done"): "vagus_nerve_stim_7"},
         keyboard_type="inline",
@@ -1128,8 +1131,8 @@ half_salamander = {
     "half_salamander_1": Question(
         id="half_salamander_1",
         text=translate("half_salamander_1"),
-        media="",
-        media_type="",
+        media="media/salamander_exe.png",
+        media_type="image",
         options={},
         keyboard_type="",
         next_question_id="half_salamander_2"
@@ -1216,18 +1219,18 @@ integration_3_intro = {
         text=translate("integration1_1"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="integration1_2"
+        options={translate('nice'):"integration1_2"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "integration1_2": Question(
         id="integration1_2",
         text=translate("integration1_2"),
-        media="https://www.youtube.com/shorts/KO-WbOGDbYk",
+        media="https://www.youtube.com/shorts/oyl4H8lyTvE",
         media_type="youtube",
-        options={},
-        keyboard_type="",
-        next_question_id="end_1"
+        options={translate('done'):"end_1"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
 
 }
@@ -1254,7 +1257,7 @@ integration_2 = {
     "integration2_2": Question(
         id="integration2_2",
         text=translate("integration2_2"),
-        media="https://www.ddinstagram.com/p/C7V7ld3s4u6/",
+        media="https://youtube.com/shorts/sdiB4KrNTgg?si=58vxXpkb2hpIjKvB",
         media_type="youtube",
         options={
             translate('done'):"integration2_3",
@@ -1303,9 +1306,9 @@ integration_2 = {
         text=translate("integration2_7"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="end_1"
+        options={translate('OK'): "end_1"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
 }
 
@@ -1439,7 +1442,7 @@ emotions = {
     "emotions_5": Question(
         id="emotions_5",
         text=translate("emotions_5"),
-        media="https://youtube.com/shorts/RAQzgRziDGY?feature=share",
+        media="https://youtube.com/shorts/RAQzgRziDGY?si=dbL-1NT0SCYa_Arx",
         media_type="youtube",
         options={
             translate("done"): "emotions_6",
@@ -1477,7 +1480,7 @@ emotions = {
     "emotions_9": Question(
         id="emotions_9",
         text=translate("emotions_9"),
-        media="https://youtube.com/shorts/kk3bR9w-pjw?feature=share",
+        media="https://youtube.com/shorts/kk3bR9w-pjw?si=FOkMaeWPOrdxrmwD",
         media_type="youtube",
         options={translate("done"): "emotions_10"},
         keyboard_type="inline",
@@ -1641,8 +1644,8 @@ task_1 = {
     "task1_2": Question(
         id="task1_2",
         text=translate("task1_2"),
-        media="",
-        media_type="",
+        media="media/expectation.jpeg",
+        media_type="image",
         options={},
         keyboard_type="",
         next_question_id="task1_3"
@@ -1714,7 +1717,7 @@ task_2 = {
     "task2_6": Question(
         id="task2_6",
         text=translate("task2_6"),
-        media="https://www.youtube.com/watch?v=Y8w8lxMv8mw",
+        media="https://youtu.be/Y8w8lxMv8mw?si=t-rNXyUmz46JMHJE&t=65",
         media_type="youtube",
         options={translate("done"):"task2_7"},
         keyboard_type="inline",
@@ -1725,9 +1728,9 @@ task_2 = {
         text=translate("task2_7"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="task2_8"
+        options={translate("OK"):"task2_8"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "task2_8": Question(
         id="task2_8",
@@ -2005,7 +2008,7 @@ negative_belief_stories = {
     "task6_2": Question(
         id="task6_2",
         text=translate("task6_2"),
-        media="https://www.ddinstagram.com/p/C_OVoksuLtU/",
+        media="https://www.youtube.com/shorts/LD1ufcfhLog",
         media_type="youtube",
         options={translate('done'): "task6_3"},
         keyboard_type="inline",
@@ -2474,7 +2477,7 @@ sound_healing = {
     "music_exc_3": Question(
         id="music_exc_3",
         text=translate("music_exc_3"),
-        media="https://www.youtube.com/watch?v=1N1vtQQ9ij0",
+        media="https://youtube.com/shorts/0ZhCHuf1Vnc",
         media_type="youtube",
         options={},
         keyboard_type="",
