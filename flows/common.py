@@ -64,16 +64,7 @@ intro = {
         text=translate("intro3"),
         media="",
         media_type="",
-        options={translate("yes_sure"): "intro4"},
-        keyboard_type="inline",
-        next_question_id=""
-    ),
-    "intro4": Question(
-        id="intro4",
-        text=translate("intro4"),
-        media="",
-        media_type="",
-        options={translate("promise"): "intro5"},
+        options={translate("yes_sure"): "intro5"},
         keyboard_type="inline",
         next_question_id=""
     ),
