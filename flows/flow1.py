@@ -45,7 +45,16 @@ questions = {
         text=translate("grounding_result_1_no"),
         media="",
         media_type="",
-        options={translate('OK'):"breath_exc_1"},
+        options={translate("lets_continue"):"breath_exc_1", translate("repeat"): "grounding_result_repeat"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "grounding_result_repeat": Question(
+        id="grounding_result_repeat",
+        text=translate("grounding_result_repeat"),
+        media="",
+        media_type="",
+        options={translate('done'):"grounding_result_1_yes"},
         keyboard_type="inline",
         next_question_id=""
     ),

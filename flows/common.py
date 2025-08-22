@@ -91,9 +91,9 @@ intro = {
         text=translate("intro7"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="intro8"
+        options={translate("OK"): "intro8"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "intro8": Question(
         id="intro8",
@@ -107,19 +107,28 @@ intro = {
     "intro9": Question(
         id="intro9",
         text=translate("intro9"),
-        media="https://www.youtube.com/shorts/dwEA8qE7hFk",
-        media_type="youtube",
-        options={},
+        media="",
+        media_type="",
+        options={translate("yalla"): "intro10", translate("cant_commit"): "intro11"},
         keyboard_type="",
-        next_question_id="intro10"
+        next_question_id=""
     ),
     "intro10": Question(
         id="intro10",
         text=translate("intro10"),
         media="",
         media_type="",
-        options={translate('ready'): "stress_question"},
-        keyboard_type="inline",
+        options={},
+        keyboard_type="",
+        next_question_id=""
+    ),
+    "intro11": Question(
+        id="intro11",
+        text=translate("intro11"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
         next_question_id=""
     ),
 }
