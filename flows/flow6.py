@@ -1,6 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import stress_question, grounding_questions, rerouting_questions2, stress_question_end, sound_healing, breath_exc_478, negative_belief_stories
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, rerouting_questions2, stress_question_end, sound_healing, breath_exc_478, negative_belief_stories
 import i18n
 
 
@@ -13,7 +13,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("yes_sure"): "stress_question"},
+        options={translate("alt_into_option1"): "acknowledgement_1", translate("alt_into_option2"): "music_healing_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -103,7 +103,7 @@ questions = {
         next_question_id=""
     ),
 }
-questions = {**stress_question, **grounding_questions, **rerouting_questions2, **breath_exc_478, **sound_healing, **stress_question_end, **negative_belief_stories, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **rerouting_questions2, **breath_exc_478, **sound_healing, **stress_question_end, **negative_belief_stories, **questions}
 
 # Initialize Flow
 flow = Flow("flow6", questions, "alt_into")

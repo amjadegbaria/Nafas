@@ -1,6 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import stress_question, grounding_questions, half_salamander, stress_question_end, sound_healing, psychological_sigh, music_healing
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, half_salamander, stress_question_end, sound_healing, psychological_sigh, music_healing
 from utils.helpers import get_chat_id
 from utils.constants import answered_questions
 import i18n
@@ -14,7 +14,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("yes_sure"): "stress_question"},
+        options={translate("alt_into_option1"): "acknowledgement_1", translate("alt_into_option2"): "task6_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -86,7 +86,7 @@ questions = {
         next_question_id=""
     ),
 }
-questions = {**stress_question, **grounding_questions, **half_salamander, **psychological_sigh, **sound_healing, **stress_question_end, **music_healing, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **half_salamander, **psychological_sigh, **sound_healing, **stress_question_end, **music_healing, **questions}
 
 # Initialize Flow
 flow = Flow("flow7", questions, "alt_into")

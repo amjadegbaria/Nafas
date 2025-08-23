@@ -1,7 +1,7 @@
 from classes.Question import Question
 from classes.Flow import Flow
 import i18n
-from flows.common import stress_question, grounding_questions, breath_exc_3, stress_question_end, sound_healing, emotions, task_3
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, breath_exc_3, stress_question_end, sound_healing, emotions, task_3
 
 translate = i18n.Translator('data').translate
 
@@ -11,7 +11,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("yes_sure"): "stress_question"},
+        options={translate("alt_into_option1"): "acknowledgement_1", translate("alt_into_option2"): "emotions_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -103,7 +103,7 @@ questions = {
 }
 
 
-questions = {**stress_question, **grounding_questions, **breath_exc_3, **sound_healing, **stress_question_end, **emotions, **task_3, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **breath_exc_3, **sound_healing, **stress_question_end, **emotions, **task_3, **questions}
 
 
 # Initialize Flow
