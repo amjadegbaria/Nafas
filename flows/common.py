@@ -243,6 +243,7 @@ main_acknowledgement_question = {
         keyboard_type="",
         next_question_id="stress_question"),
 }
+
 stress_question = {
     "stress_question": Question(
         id="stress_question",
@@ -2580,7 +2581,7 @@ sound_healing = {
         text=translate("music_exc_2"),
         media="",
         media_type="",
-        options={translate('ready'): "music_exc_3", translate('unavailable'): "music_exc_6"},
+        options={translate('ready'): "music_exc_3", translate('unavailable'): "end_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
