@@ -110,7 +110,7 @@ intro = {
         media="",
         media_type="",
         options={translate("yalla"): "intro10", translate("cant_commit"): "intro11"},
-        keyboard_type="",
+        keyboard_type="inline",
         next_question_id=""
     ),
     "intro10": Question(
@@ -120,7 +120,7 @@ intro = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id=""
+        next_question_id="stress_question"
     ),
     "intro11": Question(
         id="intro11",
@@ -129,7 +129,7 @@ intro = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id=""
+        next_question_id="stress_question"
     ),
 }
 
@@ -2470,7 +2470,7 @@ sound_healing = {
         text=translate("music_exc_2"),
         media="",
         media_type="",
-        options={translate('ready'): "music_exc_3", translate('unavailable'): "music_exc_6"},
+        options={translate('ready'): "music_exc_3", translate('unavailable'): "end_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
