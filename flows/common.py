@@ -120,7 +120,7 @@ intro = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="stress_question"
+        next_question_id="are_u_ready"
     ),
     "intro11": Question(
         id="intro11",
@@ -129,8 +129,17 @@ intro = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="stress_question"
-    ),
+        next_question_id="are_u_ready"
+    ),    
+    "are_u_ready": Question(
+        id="are_u_ready",
+        text=translate("are_u_ready"),
+        media="",
+        media_type="",
+        options={translate("ready"): "stress_question"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),    
 }
 
 stress_question = {
