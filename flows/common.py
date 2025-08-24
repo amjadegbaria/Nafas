@@ -633,6 +633,24 @@ psychological_sigh = {
     "breath_exc_1": Question(
         id="breath_exc_1",
         text=translate("breath_exc_1"),
+        media="media/psychological-sigh.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="breath_exc_choice"
+    ),
+    "breath_exc_choice": Question(
+        id="breath_exc_choice",
+        text=translate("breath_exc_choice"),
+        media="",
+        media_type="",
+        options={translate("start_exercise"): "breath_exc_3",translate("watch_explanation"): "breath_exc_video"},
+        keyboard_type="inline",
+        next_question_id="breath_exc_2"
+    ),
+    "breath_exc_video": Question(
+        id="breath_exc_video",
+        text=translate("breath_exc_video"),
         media="https://youtube.com/shorts/_rJdObUzTfQ",
         media_type="youtube",
         options={},
@@ -2479,7 +2497,16 @@ sound_healing = {
         text=translate("music_exc_2"),
         media="",
         media_type="",
-        options={translate('ready'): "music_exc_3", translate('unavailable'): "end_1"},
+        options={translate('ready'): "music_exc_3", translate('unavailable'): "music_exec_choice"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "music_exec_choice": Question(
+        id="music_exec_choice",
+        text=translate("music_exec_choice"),
+        media="",
+        media_type="",
+        options={translate('yes'): "music_exc_3", translate('no'): "end_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
