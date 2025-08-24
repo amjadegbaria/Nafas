@@ -221,8 +221,8 @@ main_acknowledgement_question = {
         next_question_id=""
     ),
     "acknowledgement_surprised": Question(
-        id="acknowledgement_happy",
-        text=translate("acknowledgement_happy"),
+        id="acknowledgement_surprised",
+        text=translate("acknowledgement_surprised"),
         media="",
         media_type="",
         options={
@@ -250,10 +250,10 @@ stress_question = {
         text=translate("stress_question"),
         media="",
         media_type="",
-        options={"1": "stress1_3", "2": "stress1_3", "3": "stress1_3", "4": "stress1_3", "5": "stress1_3",
+        options={"1 🤓": "stress1_3", "2": "stress1_3", "3": "stress1_3", "4": "stress1_3", "5": "stress1_3",
                  "6": "stress1_2",
                  "7": "stress1_2", "8": "stress1_2", "9": "stress1_1",
-                 "10": "stress1_1"},
+                 "10 🤯": "stress1_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -301,10 +301,10 @@ stress_question_end = {
         text=translate("stress_question_end"),
         media="",
         media_type="",
-        options={"1": "stress_low", "2": "stress_low", "3": "stress_low", "4": "stress_low", "5": "stress_still_high",
+        options={"1 🤓": "stress_low", "2": "stress_low", "3": "stress_low", "4": "stress_low", "5": "stress_still_high",
                  "6": "stress_still_high",
                  "7": "stress_still_high", "8": "stress_still_high", "9": "stress_still_high",
-                 "10": "stress_still_high"},
+                 "10 🤯": "stress_still_high"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -2467,8 +2467,8 @@ acknowledgement_question = {
         next_question_id=""
     ),
     "acknowledgement_surprised": Question(
-        id="acknowledgement_happy",
-        text=translate("acknowledgement_happy"),
+        id="acknowledgement_surprised",
+        text=translate("acknowledgement_surprised"),
         media="",
         media_type="",
         options={
