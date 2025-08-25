@@ -1,7 +1,7 @@
 from classes.Question import Question
 from classes.Flow import Flow
 import i18n
-from flows.common import stress_question, main_acknowledgement_question, grounding_questions, breath_exc_2, stress_question_end, sound_healing, rerouting_questions, integration_2, task_2
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, breath_exc_2, emotion_release, stress_question_end, sound_healing, rerouting_questions, integration_2, task_2
 
 
 translate = i18n.Translator('data').translate
@@ -12,7 +12,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("alt_into_option1"): "acknowledgement_1", translate("alt_into_option2"): "integration2"},
+        options={translate("alt_into_option1"): "main_acknowledgement_1", translate("alt_into_option2"): "integration2"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -85,8 +85,11 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'):"integration2",
-            translate('enough_today'):"end_question_response_no_1"},
+            translate('stress_still_high_option3'): "integration2",
+            # translate('stress_still_high_option2'): restart_flow,
+            translate('stress_still_high_option1'): "emotion_release_1"
+
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -96,8 +99,8 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'):"integration2",
-            translate('enough_today'):"end_question_response_no_1"},
+            translate('ready'):"integration2",
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -130,7 +133,7 @@ questions = {
     )
 }
 
-questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **breath_exc_2, **rerouting_questions, **sound_healing, **stress_question_end, **integration_2, **task_2, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **breath_exc_2, **rerouting_questions, **sound_healing,**emotion_release, **stress_question_end, **integration_2, **task_2, **questions}
 
 # Initialize Flow
 flow = Flow("flow2", questions, "alt_into")

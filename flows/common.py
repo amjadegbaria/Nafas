@@ -1,6 +1,8 @@
 import asyncio
 from utils.helpers import timer, complete_the_sentence
 from classes.Question import Question
+# from flows.restart_flow import restart_flow
+
 import i18n
 
 
@@ -127,31 +129,50 @@ intro = {
         text=translate("intro10"),
         media="",
         media_type="",
-        options={translate('ready'): "acknowledgement_1"},
+        options={translate('ready'): "intro11"},
         keyboard_type="inline",
         next_question_id=""
+    ),
+    "intro11": Question(
+        id="intro11",
+        text=translate("intro11"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="main_acknowledgement_1"
     ),
 }
 
 main_acknowledgement_question = {
-    "acknowledgement_1": Question(
-        id="acknowledgement_1",
-        text=translate("acknowledgement_1"),
+
+    "main_acknowledgement_1": Question(
+        id="main_acknowledgement_1",
+        text=translate("main_acknowledgement_1"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="main_acknowledgement_2"
+    ),
+    "main_acknowledgement_2": Question(
+        id="main_acknowledgement_2",
+        text=translate("main_acknowledgement_2"),
         media="",
         media_type="",
         options={
-            translate('feeling_happy'):"acknowledgement_happy",
-            translate('disgusted'): "acknowledgement_disgusted",
-            translate('sad'): "acknowledgement_sad",
-            translate('feeling_scared'): "acknowledgement_scared",
-            translate('angry'): "acknowledgement_angry",
-            translate('surprised'): "acknowledgement_surprised",
+            translate('feeling_happy'):"main_acknowledgement_happy",
+            translate('disgusted'): "main_acknowledgement_disgusted",
+            translate('sad'): "main_acknowledgement_sad",
+            translate('feeling_scared'): "main_acknowledgement_scared",
+            translate('angry'): "main_acknowledgement_angry",
+            translate('surprised'): "main_acknowledgement_surprised",
         },
         keyboard_type="inline",
         next_question_id=""
     ),
-    "acknowledgement_happy": Question(
-        id="acknowledgement_happy",
+    "main_acknowledgement_happy": Question(
+        id="main_acknowledgement_happy",
         text=translate("acknowledgement_happy"),
         media="",
         media_type="",
@@ -164,8 +185,8 @@ main_acknowledgement_question = {
         keyboard_type="inline",
         next_question_id=""
     ),
-    "acknowledgement_disgusted": Question(
-        id="acknowledgement_disgusted",
+    "main_acknowledgement_disgusted": Question(
+        id="main_acknowledgement_disgusted",
         text=translate("acknowledgement_disgusted"),
         media="",
         media_type="",
@@ -178,8 +199,8 @@ main_acknowledgement_question = {
         keyboard_type="inline",
         next_question_id=""
     ),
-    "acknowledgement_sad": Question(
-        id="acknowledgement_sad",
+    "main_acknowledgement_sad": Question(
+        id="main_acknowledgement_sad",
         text=translate("acknowledgement_sad"),
         media="",
         media_type="",
@@ -192,8 +213,8 @@ main_acknowledgement_question = {
         keyboard_type="inline",
         next_question_id=""
     ),
-    "acknowledgement_scared": Question(
-        id="acknowledgement_scared",
+    "main_acknowledgement_scared": Question(
+        id="main_acknowledgement_scared",
         text=translate("acknowledgement_scared"),
         media="",
         media_type="",
@@ -206,8 +227,8 @@ main_acknowledgement_question = {
         keyboard_type="inline",
         next_question_id=""
     ),
-    "acknowledgement_angry": Question(
-        id="acknowledgement_angry",
+    "main_acknowledgement_angry": Question(
+        id="main_acknowledgement_angry",
         text=translate("acknowledgement_angry"),
         media="",
         media_type="",
@@ -220,8 +241,8 @@ main_acknowledgement_question = {
         keyboard_type="inline",
         next_question_id=""
     ),
-    "acknowledgement_surprised": Question(
-        id="acknowledgement_surprised",
+    "main_acknowledgement_surprised": Question(
+        id="main_acknowledgement_surprised",
         text=translate("acknowledgement_surprised"),
         media="",
         media_type="",
@@ -314,8 +335,11 @@ stress_question_end = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "integration1_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('stress_still_high_option3'): "integration1_1",
+            # translate('stress_still_high_option2'): restart_flow,
+            translate('stress_still_high_option1'): "emotion_release_1"
+
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -325,8 +349,7 @@ stress_question_end = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "integration1_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('ready'): "integration1_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -1357,10 +1380,34 @@ integration_3_intro = {
         text=translate("integration1_2"),
         media="https://www.youtube.com/shorts/oyl4H8lyTvE",
         media_type="youtube",
-        options={translate('done'):"end_1"},
+        options={translate('done'):"integration1_3"},
         keyboard_type="inline",
         next_question_id=""
     ),
+    "integration1_3": Question(
+        id="integration1_3",
+        text=translate("integration1_3"),
+        media="",
+        media_type="",
+        options={
+            translate('integration1_3_yes'):"integration1_3_yes_answer",
+            translate('integration1_3_no'): "end_1"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "integration1_3_yes_answer": Question(
+        id="integration1_3_yes_answer",
+        text=translate("integration1_3_yes_answer"),
+        media="",
+        media_type="",
+        options={
+            translate('OK'): "end_1"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+
 
 }
 

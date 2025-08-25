@@ -13,7 +13,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("alt_into_option1"): "acknowledgement_1", translate("alt_into_option2"): "music_healing_1"},
+        options={translate("alt_into_option1"): "main_acknowledgement_1", translate("alt_into_option2"): "music_healing_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
