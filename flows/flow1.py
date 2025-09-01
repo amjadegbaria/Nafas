@@ -18,7 +18,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("alt_into_option1"): "main_acknowledgement_1", translate("alt_into_option2"): "integration1_1"},
+        options={translate("alt_into_option1"): "stage1", translate("alt_into_option2"): "stage4"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -74,7 +74,7 @@ questions = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="music_exc_1"
+        next_question_id="stage3"
     ),
     "music_exc_5": Question(
         id="music_exc_5",
@@ -91,7 +91,7 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('stress_still_high_option3'): "integration1_1",
+            translate('stress_still_high_option3'): "stage4",
             # translate('stress_still_high_option2'): restart_flow,
             translate('stress_still_high_option1'): "emotion_release_1"
         },
@@ -104,7 +104,18 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('ready'): "integration1_1"
+            translate('ready'): "stage4"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "stage4": Question(
+        id="stage4",
+        text=translate("stage4"),
+        media="media/stage4.png",
+        media_type="image",
+        options={
+            translate('OK'): "integration1_1"
         },
         keyboard_type="inline",
         next_question_id=""

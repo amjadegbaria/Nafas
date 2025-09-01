@@ -12,7 +12,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("alt_into_option1"): "main_acknowledgement_1", translate("alt_into_option2"): "integration2"},
+        options={translate("alt_into_option1"): "stage1", translate("alt_into_option2"): "stage4"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -66,7 +66,7 @@ questions = {
         text=translate("rerouting_exc_11"),
         media="",
         media_type="",
-        options={translate('done'): "music_exc_1"},
+        options={translate('done'): "stage3"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -85,7 +85,7 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('stress_still_high_option3'): "integration2",
+            translate('stress_still_high_option3'): "stage4",
             # translate('stress_still_high_option2'): restart_flow,
             translate('stress_still_high_option1'): "emotion_release_1"
 
@@ -99,27 +99,20 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('ready'):"integration2",
+            translate('ready'):"stage4",
         },
         keyboard_type="inline",
         next_question_id=""
     ),
-    "end_question_response_no_1": Question(
-        id="end_question_response_no_1",
-        text=translate("end_question_response_no_1"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="end_question_response_no_2"
-    ),
-    "end_question_response_no_2": Question(
-        id="end_question_response_no_2",
-        text=translate("end_question_response_no_2"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
+    "stage4": Question(
+        id="stage4",
+        text=translate("stage4"),
+        media="media/stage4.png",
+        media_type="image",
+        options={
+            translate('OK'): "integration2"
+        },
+        keyboard_type="inline",
         next_question_id=""
     ),
     "integration2_7": Question(

@@ -140,17 +140,17 @@ intro = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="main_acknowledgement_1"
+        next_question_id="stage1"
     ),
 }
 
 main_acknowledgement_question = {
 
-    "main_acknowledgement_1": Question(
-        id="main_acknowledgement_1",
-        text=translate("main_acknowledgement_1"),
-        media="",
-        media_type="",
+    "stage1": Question(
+        id="stage1",
+        text=translate("stage1"),
+        media="media/stage1.png",
+        media_type="image",
         options={},
         keyboard_type="",
         next_question_id="main_acknowledgement_2"
@@ -285,7 +285,7 @@ stress_question = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="exec_transition_question"
+        next_question_id="stage2"
     ),
     "stress1_2": Question(
         id="stress1_2",
@@ -294,7 +294,7 @@ stress_question = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="exec_transition_question"
+        next_question_id="stage2"
     ),
     "stress1_3": Question(
         id="stress1_3",
@@ -305,11 +305,11 @@ stress_question = {
         keyboard_type="inline",
         next_question_id=""
     ),
-    "exec_transition_question": Question(
-        id="exec_transition_question",
-        text=translate("exec_transition_question"),
-        media="",
-        media_type="",
+    "stage2": Question(
+        id="stage2",
+        text=translate("stage2"),
+        media="media/stage2.png",
+        media_type="image",
         options={translate('OK'):'grounding_question'},
         keyboard_type="inline",
         next_question_id=""
@@ -2632,11 +2632,11 @@ emotion_release = {
 }
 
 sound_healing = {
-    "music_exc_1": Question(
-        id="music_exc_1",
-        text=translate("music_exc_1"),
-        media="",
-        media_type="",
+    "stage3": Question(
+        id="stage3",
+        text=translate("stage3"),
+        media="media/stage3.png",
+        media_type="image",
         options={},
         keyboard_type="",
         next_question_id="music_exc_2"
