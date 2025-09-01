@@ -28,12 +28,13 @@ async def main() -> None:
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, default))
     application.add_handler(CallbackQueryHandler(handle_callback_query))
 
-    # Start the Bot
-    await application.run_polling(
-        allowed_updates=["message", "callback_query"],  # Only process needed updates
-        drop_pending_updates=True,  # Drop updates received before bot started
-        close_loop=False  # Don't close the event loop on shutdown
-    )
+    # Start the Bot with simpler polling
+    print("🚀 Starting Nafas Telegram Bot...")
+    print("📊 Performance optimizations enabled for multi-user support")
+    print("🔧 Press Ctrl+C to stop the bot")
+    print("-" * 50)
+    
+    await application.run_polling(drop_pending_updates=True)
 
 if __name__ == '__main__':
     try:
