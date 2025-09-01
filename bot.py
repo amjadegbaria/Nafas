@@ -8,7 +8,7 @@ from config import TOKEN
 # Configure logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-async def main() -> None:
+def main() -> None:
     # Configure the application with proper concurrency settings
     application = (
         Application.builder()
@@ -28,17 +28,17 @@ async def main() -> None:
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, default))
     application.add_handler(CallbackQueryHandler(handle_callback_query))
 
-    # Start the Bot with simpler polling
+    # Start the Bot
     print("🚀 Starting Nafas Telegram Bot...")
     print("📊 Performance optimizations enabled for multi-user support")
     print("🔧 Press Ctrl+C to stop the bot")
     print("-" * 50)
     
-    await application.run_polling(drop_pending_updates=True)
+    application.run_polling(drop_pending_updates=True)
 
 if __name__ == '__main__':
     try:
-        asyncio.run(main())
+        main()
     except KeyboardInterrupt:  # Ignore exception when Ctrl-C is pressed
         print("\n👋 Bot stopped successfully!")
     except Exception as e:
