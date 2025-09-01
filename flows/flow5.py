@@ -1,6 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import stress_question, grounding_questions, box_breathing, stress_question_end, sound_healing, half_salamander, task_5
+from flows.common import stress_question,main_acknowledgement_question, grounding_questions, box_breathing, stress_question_end, sound_healing, half_salamander, task_5
 
 import i18n
 
@@ -13,7 +13,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("yes_sure"): "stress_question"},
+        options={translate("alt_into_option1"): "stage1", translate("alt_into_option2"): "stage4"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -67,7 +67,7 @@ questions = {
         text=translate("half_salamander_9"),
         media="",
         media_type="",
-        options={translate("yes"): "music_exc_1", translate("no"): "music_exc_1"},
+        options={translate("yes"): "stage3", translate("no"): "stage3"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -80,14 +80,16 @@ questions = {
         keyboard_type="inline",
         next_question_id=""
     ),
+
     "stress_still_high": Question(
         id="stress_still_high",
         text=translate("stress_still_high"),
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "task5_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('stress_still_high_option3'): "stage4",
+            # translate('stress_still_high_option2'): restart_flow,
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -97,13 +99,24 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "task5_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('ready'): "stage4",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "stage4": Question(
+        id="stage4",
+        text=translate("stage4"),
+        media="media/stage4.png",
+        media_type="image",
+        options={
+            translate('OK'): "task5_1"
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
 }
-questions = {**stress_question, **grounding_questions, **box_breathing, **half_salamander, **sound_healing, **stress_question_end, **task_5, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **box_breathing, **half_salamander, **sound_healing, **stress_question_end, **task_5, **questions}
 
 # Initialize Flow
 flow = Flow("flow5", questions, "alt_into")

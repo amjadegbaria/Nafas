@@ -1,6 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import stress_question, grounding_questions, half_salamander, stress_question_end, sound_healing, psychological_sigh, music_healing
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, half_salamander, stress_question_end, sound_healing, psychological_sigh, music_healing
 from utils.helpers import get_chat_id
 from utils.constants import answered_questions
 import i18n
@@ -14,7 +14,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("yes_sure"): "stress_question"},
+        options={translate("alt_into_option1"): "stage1", translate("alt_into_option2"): "stage4"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -69,8 +69,9 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "music_healing_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('stress_still_high_option3'): "stage4",
+            # translate('stress_still_high_option2'): restart_flow,
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -80,13 +81,24 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "music_healing_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('ready'): "stage4",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "stage4": Question(
+        id="stage4",
+        text=translate("stage4"),
+        media="media/stage4.png",
+        media_type="image",
+        options={
+            translate('OK'): "music_healing_1"
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
 }
-questions = {**stress_question, **grounding_questions, **half_salamander, **psychological_sigh, **sound_healing, **stress_question_end, **music_healing, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **half_salamander, **psychological_sigh, **sound_healing, **stress_question_end, **music_healing, **questions}
 
 # Initialize Flow
 flow = Flow("flow7", questions, "alt_into")
