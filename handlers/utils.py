@@ -1,4 +1,4 @@
-from _datetime import datetime
+from datetime import datetime
 from asyncio import sleep
 from telegram import Update
 from telegram.ext import CallbackContext
@@ -8,20 +8,21 @@ from database.queries import get_user_progress, save_user_progress,\
 from handlers.media_handler import handle_media_type
 from utils.helpers import already_answered
 from utils.constants import active_users_map, answered_questions
+import asyncio
 
 async def restart_flow(update, context):
     user_id = update.effective_user.id
-    reset_user_progress(user_id)  # clean the restart flow from the DB
-    active_users_map.pop(user_id)
-    flow = get_user_flow(user_id)
+    await reset_user_progress(user_id)  # clean the restart flow from the DB
+    active_users_map.pop(user_id, None)
+    flow = await get_user_flow(user_id)
     question = flow.get_current_question()
     flow.start_flow(question.get_id())
-    start_flow(user_id, flow.get_id(), question.get_id())
+    await start_flow(user_id, flow.get_id(), question.get_id())
 
     # Process the first question in the flow
     await process_question(update, context, flow)
 
-def start_flow(user_id, flow_id, first_question_id):
+async def start_flow(user_id, flow_id, first_question_id):
     if flow_id == 'restart_flow':
         return
     active_flow = {
@@ -29,7 +30,7 @@ def start_flow(user_id, flow_id, first_question_id):
         "current_question_id": first_question_id,
         "answers": []
     }
-    save_user_progress(user_id, active_flow)
+    await save_user_progress(user_id, active_flow)
     return 0  # Return the index of the first question
 
 
@@ -43,43 +44,43 @@ def get_next_from_answer(update, question):
     return question.get_next_question(text)
 
 
-def complete_flow(user_id):
-    user_progress = get_user_progress(user_id)
-    save_user_completed_flow(user_id, user_progress)
-    active_users_map.pop(user_id)
+async def complete_flow(user_id):
+    user_progress = await get_user_progress(user_id)
+    await save_user_completed_flow(user_id, user_progress)
+    active_users_map.pop(user_id, None)
 
 
-def is_completed(flow, user_id):
+async def is_completed(flow, user_id):
     if flow.is_completed():  # if flow completed, save the response and restart the flow
-        answered_questions.pop(user_id)
+        answered_questions.pop(user_id, None)
         # if the completed flow is the restart flow, clean the active flow and move to next one
         if flow.get_id() == "restart_flow":
-            reset_user_progress(user_id)
+            await reset_user_progress(user_id)
         else:
-            complete_flow(user_id)
+            await complete_flow(user_id)
 
 
-def save_answer(user_id, answer, question_id):
-    user_progress = get_user_progress(user_id)
+async def save_answer(user_id, answer, question_id):
+    user_progress = await get_user_progress(user_id)
     user_progress['answers'] = user_progress.get('answers', {})
     user_progress['answers'].append({"question_id": question_id, "answer": answer})
     user_progress['current_question_id'] = question_id
-    save_user_progress(user_id, user_progress)
+    await save_user_progress(user_id, user_progress)
     return user_progress['current_question_id']
 
 
-def update_user_answer(update):
+async def update_user_answer(update):
     user_id = update.effective_user.id
-    flow = get_user_flow(user_id)
+    flow = await get_user_flow(user_id)
     question = flow.get_current_question()
     current_question_id = question.get_id()
     user_id = get_user_answer(update)["user_id"]
     answer = get_user_answer(update)["answer"]
-    save_answer(user_id, answer, f"{current_question_id}")
+    await save_answer(user_id, answer, f"{current_question_id}")
 
 
-def get_user_flow(user_id):
-    user_data = get_user_data(user_id)
+async def get_user_flow(user_id):
+    user_data = await get_user_data(user_id)
     if active_users_map.get(user_id, None):
         return active_users_map[user_id]
 
@@ -93,7 +94,8 @@ def get_user_flow(user_id):
             return active_users_map[user_id]
         elif completed:
             last_completed_id = completed[len(completed) - 1].get('flow_id')
-            next_flow_id = flows_map[last_completed_id]
+            next_flow_id="flow2"
+            # next_flow_id = flows_map[last_completed_id]
             last_flow = completed[-1]
             last_interaction = last_flow['last_interaction'].strftime("%Y-%m-%dT%H:%M:%S.%f%z")
             date = datetime.fromisoformat(last_interaction)
@@ -112,7 +114,7 @@ async def process_question(update: Update, context: CallbackContext, flow=None) 
 
     # Retrieve or initialize the flow
     if not flow:
-        flow = get_user_flow(user_id)
+        flow = await get_user_flow(user_id)
 
     question = flow.get_current_question()
 
@@ -123,9 +125,8 @@ async def process_question(update: Update, context: CallbackContext, flow=None) 
     # Handle media for the current question
     await handle_media_type(question, update, context)
 
-
     # Check if the flow is completed
-    if is_completed(flow, user_id):
+    if await is_completed(flow, user_id):
         return
 
     # Move to the next question in the flow

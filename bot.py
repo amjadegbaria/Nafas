@@ -5,14 +5,22 @@ from handlers.callback_handler import handle_callback_query
 from handlers.command_handler import restart, default, menu
 from config import TOKEN
 
-
 # Configure logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-application = Application.builder().token(TOKEN).build()
+# Configure the application with proper concurrency settings
+application = (
+    Application.builder()
+    .token(TOKEN)
+    .concurrent_updates(True)  # Enable concurrent updates processing
+    .read_timeout(30)  # Increase read timeout
+    .write_timeout(30)  # Increase write timeout
+    .connect_timeout(30)  # Increase connection timeout
+    .pool_timeout(30)  # Increase pool timeout
+    .build()
+)
 
-
-def main() -> None:
+async def main() -> None:
     # Add handlers
     application.add_handler(CommandHandler("start", default))
     application.add_handler(CommandHandler("restart", restart))
@@ -21,12 +29,13 @@ def main() -> None:
     application.add_handler(CallbackQueryHandler(handle_callback_query))
 
     # Start the Bot
-    application.run_polling()
-
+    await application.run_polling(
+        allowed_updates=["message", "callback_query"],  # Only process needed updates
+        drop_pending_updates=True,  # Drop updates received before bot started
+        close_loop=False  # Don't close the event loop on shutdown
+    )
 
 if __name__ == '__main__':
-    # Configure logging
-
     try:
         asyncio.run(main())
     except KeyboardInterrupt:  # Ignore exception when Ctrl-C is pressed
