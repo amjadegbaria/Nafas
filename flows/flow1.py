@@ -2,7 +2,7 @@ import asyncio
 from classes.Question import Question
 from classes.Flow import Flow
 from utils.helpers import timer
-from flows.common import intro, stress_question, grounding_questions, psychological_sigh, countdown, stress_question_end, sound_healing, integration_3_intro, task_1
+from flows.common import intro, main_acknowledgement_question, stress_question, grounding_questions, psychological_sigh, countdown, emotion_release, stress_question_end, sound_healing, integration_3_intro, task_1
 
 import i18n
 
@@ -18,7 +18,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("yes_sure"): "stress_question"},
+        options={translate("alt_into_option1"): "stage1", translate("alt_into_option2"): "stage4"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -45,7 +45,16 @@ questions = {
         text=translate("grounding_result_1_no"),
         media="",
         media_type="",
-        options={translate('OK'):"breath_exc_1"},
+        options={translate("lets_continue"):"breath_exc_1", translate("repeat"): "grounding_result_repeat"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "grounding_result_repeat": Question(
+        id="grounding_result_repeat",
+        text=translate("grounding_result_repeat"),
+        media="",
+        media_type="",
+        options={translate('done'):"grounding_result_1_yes"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -65,7 +74,7 @@ questions = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="music_exc_1"
+        next_question_id="stage3"
     ),
     "music_exc_5": Question(
         id="music_exc_5",
@@ -82,8 +91,10 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "integration1_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('stress_still_high_option3'): "stage4",
+            # translate('stress_still_high_option2'): restart_flow,
+            translate('stress_still_high_option1'): "emotion_release_1"
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -93,8 +104,19 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "integration1_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('ready'): "stage4"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "stage4": Question(
+        id="stage4",
+        text=translate("stage4"),
+        media="media/stage4.png",
+        media_type="image",
+        options={
+            translate('OK'): "integration1_1"
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -116,19 +138,34 @@ questions = {
         keyboard_type="",
         next_question_id=""
     ),
-    "integration1_2": Question(
-        id="integration1_2",
-        text=translate("integration1_2"),
-        media="https://www.youtube.com/shorts/oyl4H8lyTvE",
-        media_type="youtube",
-        options={translate('done'):"task1_1"},
+    "integration1_3": Question(
+        id="integration1_3",
+        text=translate("integration1_3"),
+        media="",
+        media_type="",
+        options={
+            translate('integration1_3_yes'):"integration1_3_yes_answer",
+            translate('integration1_3_no'): "task1_1"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "integration1_3_yes_answer": Question(
+        id="integration1_3_yes_answer",
+        text=translate("integration1_3_yes_answer"),
+        media="",
+        media_type="",
+        options={
+            translate('OK'): "task1_1"
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
 
+
 }
 
-questions = {**intro, **stress_question, **grounding_questions, **psychological_sigh, **countdown, **sound_healing, **stress_question_end, **integration_3_intro, **task_1, **questions}
+questions = {**intro,**main_acknowledgement_question, **stress_question, **grounding_questions, **psychological_sigh, **countdown, **sound_healing,**emotion_release, **stress_question_end, **integration_3_intro, **task_1, **questions}
 
 # Initialize Flow
 flow = Flow("flow1", questions, "alt_into")

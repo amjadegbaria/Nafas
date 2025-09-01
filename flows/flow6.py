@@ -1,6 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import stress_question, grounding_questions, rerouting_questions2, stress_question_end, sound_healing, breath_exc_478, negative_belief_stories
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, rerouting_questions2, stress_question_end, sound_healing, breath_exc_478, negative_belief_stories
 import i18n
 
 
@@ -13,7 +13,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("yes_sure"): "stress_question"},
+        options={translate("alt_into_option1"): "stage1", translate("alt_into_option2"): "stage4"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -67,7 +67,7 @@ questions = {
         text=translate("breath_exc_478_5"),
         media="",
         media_type="",
-        options={translate('done'): "music_exc_1"},
+        options={translate('done'): "stage3"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -86,8 +86,9 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "task6_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('stress_still_high_option3'): "stage4",
+            # translate('stress_still_high_option2'): restart_flow,
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -97,13 +98,24 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "task6_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('ready'): "stage4",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "stage4": Question(
+        id="stage4",
+        text=translate("stage4"),
+        media="media/stage4.png",
+        media_type="image",
+        options={
+            translate('OK'): "task6_1"
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
 }
-questions = {**stress_question, **grounding_questions, **rerouting_questions2, **breath_exc_478, **sound_healing, **stress_question_end, **negative_belief_stories, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **rerouting_questions2, **breath_exc_478, **sound_healing, **stress_question_end, **negative_belief_stories, **questions}
 
 # Initialize Flow
 flow = Flow("flow6", questions, "alt_into")

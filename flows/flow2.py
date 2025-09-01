@@ -1,7 +1,7 @@
 from classes.Question import Question
 from classes.Flow import Flow
 import i18n
-from flows.common import stress_question, grounding_questions, breath_exc_2, stress_question_end, sound_healing, rerouting_questions, integration_2, task_2
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, breath_exc_2, emotion_release, stress_question_end, sound_healing, rerouting_questions, integration_2, task_2
 
 
 translate = i18n.Translator('data').translate
@@ -12,7 +12,7 @@ questions = {
         text=translate("alt_into"),
         media="",
         media_type="",
-        options={translate("yes_sure"): "stress_question"},
+        options={translate("alt_into_option1"): "stage1", translate("alt_into_option2"): "stage4"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -66,7 +66,7 @@ questions = {
         text=translate("rerouting_exc_11"),
         media="",
         media_type="",
-        options={translate('done'): "music_exc_1"},
+        options={translate('done'): "stage3"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -85,8 +85,11 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'):"integration2",
-            translate('enough_today'):"end_question_response_no_1"},
+            translate('stress_still_high_option3'): "stage4",
+            # translate('stress_still_high_option2'): restart_flow,
+            translate('stress_still_high_option1'): "emotion_release_1"
+
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -96,27 +99,20 @@ questions = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'):"integration2",
-            translate('enough_today'):"end_question_response_no_1"},
+            translate('ready'):"stage4",
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
-    "end_question_response_no_1": Question(
-        id="end_question_response_no_1",
-        text=translate("end_question_response_no_1"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="end_question_response_no_2"
-    ),
-    "end_question_response_no_2": Question(
-        id="end_question_response_no_2",
-        text=translate("end_question_response_no_2"),
-        media="",
-        media_type="",
-        options={},
-        keyboard_type="",
+    "stage4": Question(
+        id="stage4",
+        text=translate("stage4"),
+        media="media/stage4.png",
+        media_type="image",
+        options={
+            translate('OK'): "integration2"
+        },
+        keyboard_type="inline",
         next_question_id=""
     ),
     "integration2_7": Question(
@@ -130,7 +126,7 @@ questions = {
     )
 }
 
-questions = {**stress_question, **grounding_questions, **breath_exc_2, **rerouting_questions, **sound_healing, **stress_question_end, **integration_2, **task_2, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **breath_exc_2, **rerouting_questions, **sound_healing,**emotion_release, **stress_question_end, **integration_2, **task_2, **questions}
 
 # Initialize Flow
 flow = Flow("flow2", questions, "alt_into")

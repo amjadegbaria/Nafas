@@ -1,6 +1,8 @@
 import asyncio
 from utils.helpers import timer, complete_the_sentence
 from classes.Question import Question
+# from flows.restart_flow import restart_flow
+
 import i18n
 
 
@@ -55,25 +57,34 @@ intro = {
         text=translate("intro2"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="intro3"
-    ),
-    "intro3": Question(
-        id="intro3",
-        text=translate("intro3"),
-        media="",
-        media_type="",
-        options={translate("yes_sure"): "intro4"},
+        options={translate("help_option1"): "intro5",translate("help_option2"): "help_option2_Question1"},
         keyboard_type="inline",
         next_question_id=""
     ),
-    "intro4": Question(
-        id="intro4",
-        text=translate("intro4"),
+    "help_option2_Question1":Question(
+        id="help_option2_Question1",
+        text=translate("help_option2_Question1"),
+        media="media/stay_tuned.png",
+        media_type="image",
+        options={translate("help_option2_answer1"): "help_option2_answer1_1",translate("help_option2_answer2"): "help_option2_Question2"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "help_option2_answer1_1": Question(
+        id="help_option2_answer1_1",
+        text=translate("help_option2_answer1_1"),
         media="",
         media_type="",
-        options={translate("promise"): "intro5"},
+        options={translate("OK"): "help_option2_Question2"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "help_option2_Question2": Question(
+        id="help_option2_Question2",
+        text=translate("help_option2_Question2"),
+        media="",
+        media_type="",
+        options={translate("help_option2_Question2_ans1"): "intro5", translate("help_option2_Question2_ans2"): "end_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -83,13 +94,13 @@ intro = {
         media="",
         media_type="",
         options={},
-        keyboard_type="inline",
+        keyboard_type="",
         next_question_id="intro6"
     ),
     "intro6": Question(
         id="intro6",
         text=translate("intro6"),
-        media="media/logos.jpeg",
+        media="media/logos.png",
         media_type="image",
         options={},
         keyboard_type="inline",
@@ -109,28 +120,149 @@ intro = {
         text=translate("intro8"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="intro9"
-    ),
-    "intro9": Question(
-        id="intro9",
-        text=translate("intro9"),
-        media="https://www.youtube.com/shorts/dwEA8qE7hFk",
-        media_type="youtube",
-        options={},
-        keyboard_type="",
-        next_question_id="intro10"
+        options={translate("OK"): "intro10"},
+        keyboard_type="inline",
+        next_question_id=""
     ),
     "intro10": Question(
         id="intro10",
         text=translate("intro10"),
         media="",
         media_type="",
-        options={translate('ready'): "stress_question"},
+        options={translate('ready'): "intro11"},
         keyboard_type="inline",
         next_question_id=""
     ),
+    "intro11": Question(
+        id="intro11",
+        text=translate("intro11"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="stage1"
+    ),
+}
+
+main_acknowledgement_question = {
+
+    "stage1": Question(
+        id="stage1",
+        text=translate("stage1"),
+        media="media/stage1.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="main_acknowledgement_2"
+    ),
+    "main_acknowledgement_2": Question(
+        id="main_acknowledgement_2",
+        text=translate("main_acknowledgement_2"),
+        media="",
+        media_type="",
+        options={
+            translate('feeling_happy'):"main_acknowledgement_happy",
+            translate('disgusted'): "main_acknowledgement_disgusted",
+            translate('sad'): "main_acknowledgement_sad",
+            translate('feeling_scared'): "main_acknowledgement_scared",
+            translate('angry'): "main_acknowledgement_angry",
+            translate('surprised'): "main_acknowledgement_surprised",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "main_acknowledgement_happy": Question(
+        id="main_acknowledgement_happy",
+        text=translate("acknowledgement_happy"),
+        media="",
+        media_type="",
+        options={
+            translate('proud'): "acknowledgement_2",
+            translate('optimistic'): "acknowledgement_2",
+            translate('acceptable'): "acknowledgement_2",
+            translate('cheerful'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "main_acknowledgement_disgusted": Question(
+        id="main_acknowledgement_disgusted",
+        text=translate("acknowledgement_disgusted"),
+        media="",
+        media_type="",
+        options={
+            translate('disappointed'): "acknowledgement_2",
+            translate('aversion'): "acknowledgement_2",
+            translate('unaccepted'): "acknowledgement_2",
+            translate('avoidant'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "main_acknowledgement_sad": Question(
+        id="main_acknowledgement_sad",
+        text=translate("acknowledgement_sad"),
+        media="",
+        media_type="",
+        options={
+            translate('guilty'): "acknowledgement_2",
+            translate('feeling_low'): "acknowledgement_2",
+            translate('lonely'): "acknowledgement_2",
+            translate('bored'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "main_acknowledgement_scared": Question(
+        id="main_acknowledgement_scared",
+        text=translate("acknowledgement_scared"),
+        media="",
+        media_type="",
+        options={
+            translate('freaking'): "acknowledgement_2",
+            translate('anxious'): "acknowledgement_2",
+            translate('rejected'): "acknowledgement_2",
+            translate('unsafe'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "main_acknowledgement_angry": Question(
+        id="main_acknowledgement_angry",
+        text=translate("acknowledgement_angry"),
+        media="",
+        media_type="",
+        options={
+            translate('very_angry'): "acknowledgement_2",
+            translate('hurt'): "acknowledgement_2",
+            translate('threatened'): "acknowledgement_2",
+            translate('separated'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "main_acknowledgement_surprised": Question(
+        id="main_acknowledgement_surprised",
+        text=translate("acknowledgement_surprised"),
+        media="",
+        media_type="",
+        options={
+            translate('shocked'): "acknowledgement_2",
+            translate('confused'): "acknowledgement_2",
+            translate('amazed'): "acknowledgement_2",
+            translate('terrified'): "acknowledgement_2",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "acknowledgement_2":Question(
+        id="acknowledgement_2",
+        text=translate("acknowledgement_2"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="stress_question"),
 }
 
 stress_question = {
@@ -139,10 +271,10 @@ stress_question = {
         text=translate("stress_question"),
         media="",
         media_type="",
-        options={"1": "stress1_3", "2": "stress1_3", "3": "stress1_3", "4": "stress1_3", "5": "stress1_3",
+        options={"1 🤓": "stress1_3", "2": "stress1_3", "3": "stress1_3", "4": "stress1_3", "5": "stress1_3",
                  "6": "stress1_2",
                  "7": "stress1_2", "8": "stress1_2", "9": "stress1_1",
-                 "10": "stress1_1"},
+                 "10 🤯": "stress1_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -153,7 +285,7 @@ stress_question = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="exec_transition_question"
+        next_question_id="stage2"
     ),
     "stress1_2": Question(
         id="stress1_2",
@@ -162,22 +294,22 @@ stress_question = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="exec_transition_question"
+        next_question_id="stage2"
     ),
     "stress1_3": Question(
         id="stress1_3",
         text=translate("stress_response_low"),
         media="",
         media_type="",
-        options={},
-        keyboard_type="",
-        next_question_id="exec_transition_question"
+        options={translate("stress_response_low_transition1"):'grounding_question',translate("stress_response_low_transition2"):'integration1_1'},
+        keyboard_type="inline",
+        next_question_id=""
     ),
-    "exec_transition_question": Question(
-        id="exec_transition_question",
-        text=translate("exec_transition_question"),
-        media="",
-        media_type="",
+    "stage2": Question(
+        id="stage2",
+        text=translate("stage2"),
+        media="media/stage2.png",
+        media_type="image",
         options={translate('OK'):'grounding_question'},
         keyboard_type="inline",
         next_question_id=""
@@ -190,10 +322,10 @@ stress_question_end = {
         text=translate("stress_question_end"),
         media="",
         media_type="",
-        options={"1": "stress_low", "2": "stress_low", "3": "stress_low", "4": "stress_low", "5": "stress_still_high",
+        options={"1 🤓": "stress_low", "2": "stress_low", "3": "stress_low", "4": "stress_low", "5": "stress_still_high",
                  "6": "stress_still_high",
                  "7": "stress_still_high", "8": "stress_still_high", "9": "stress_still_high",
-                 "10": "stress_still_high"},
+                 "10 🤯": "stress_still_high"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -203,8 +335,11 @@ stress_question_end = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "integration1_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('stress_still_high_option3'): "integration1_1",
+            # translate('stress_still_high_option2'): restart_flow,
+            translate('stress_still_high_option1'): "emotion_release_1"
+
+        },
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -214,8 +349,7 @@ stress_question_end = {
         media="",
         media_type="",
         options={
-            translate('lets_continue'): "integration1_1",
-            translate('enough_today'): "end_question_response_no_1"},
+            translate('ready'): "integration1_1"},
         keyboard_type="inline",
         next_question_id=""
     ),
@@ -387,7 +521,7 @@ grounding_questions = {
     "end_1": Question(
         id="end_1",
         text=translate("end_1"),
-        media="media/end.webp",
+        media="media/The_End.png",
         media_type="image",
         options={},
         keyboard_type="",
@@ -612,7 +746,7 @@ body_connection = {
     "end_1": Question(
         id="end_1",
         text=translate("end_1"),
-        media="media/end.webp",
+        media="media/The_End.png",
         media_type="image",
         options={},
         keyboard_type="",
@@ -624,6 +758,24 @@ psychological_sigh = {
     "breath_exc_1": Question(
         id="breath_exc_1",
         text=translate("breath_exc_1"),
+        media="media/psychological-sigh.png",
+        media_type="image",
+        options={},
+        keyboard_type="",
+        next_question_id="breath_exc_choice"
+    ),
+    "breath_exc_choice": Question(
+        id="breath_exc_choice",
+        text=translate("breath_exc_choice"),
+        media="",
+        media_type="",
+        options={translate("start_exercise"): "breath_exc_3",translate("watch_explanation"): "breath_exc_video"},
+        keyboard_type="inline",
+        next_question_id="breath_exc_2"
+    ),
+    "breath_exc_video": Question(
+        id="breath_exc_video",
+        text=translate("breath_exc_video"),
         media="https://youtube.com/shorts/_rJdObUzTfQ",
         media_type="youtube",
         options={},
@@ -1228,10 +1380,34 @@ integration_3_intro = {
         text=translate("integration1_2"),
         media="https://www.youtube.com/shorts/oyl4H8lyTvE",
         media_type="youtube",
-        options={translate('done'):"end_1"},
+        options={translate('done'):"integration1_3"},
         keyboard_type="inline",
         next_question_id=""
     ),
+    "integration1_3": Question(
+        id="integration1_3",
+        text=translate("integration1_3"),
+        media="",
+        media_type="",
+        options={
+            translate('integration1_3_yes'):"integration1_3_yes_answer",
+            translate('integration1_3_no'): "end_1"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "integration1_3_yes_answer": Question(
+        id="integration1_3_yes_answer",
+        text=translate("integration1_3_yes_answer"),
+        media="",
+        media_type="",
+        options={
+            translate('OK'): "end_1"
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+
 
 }
 
@@ -2356,8 +2532,8 @@ acknowledgement_question = {
         next_question_id=""
     ),
     "acknowledgement_surprised": Question(
-        id="acknowledgement_happy",
-        text=translate("acknowledgement_happy"),
+        id="acknowledgement_surprised",
+        text=translate("acknowledgement_surprised"),
         media="",
         media_type="",
         options={
@@ -2456,11 +2632,11 @@ emotion_release = {
 }
 
 sound_healing = {
-    "music_exc_1": Question(
-        id="music_exc_1",
-        text=translate("music_exc_1"),
-        media="",
-        media_type="",
+    "stage3": Question(
+        id="stage3",
+        text=translate("stage3"),
+        media="media/stage3.png",
+        media_type="image",
         options={},
         keyboard_type="",
         next_question_id="music_exc_2"
@@ -2470,7 +2646,16 @@ sound_healing = {
         text=translate("music_exc_2"),
         media="",
         media_type="",
-        options={translate('ready'): "music_exc_3", translate('unavailable'): "music_exc_6"},
+        options={translate('ready'): "music_exc_3", translate('unavailable'): "music_exec_choice"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "music_exec_choice": Question(
+        id="music_exec_choice",
+        text=translate("music_exec_choice"),
+        media="",
+        media_type="",
+        options={translate('yes'): "music_exc_3", translate('no'): "stress_question_end"},
         keyboard_type="inline",
         next_question_id=""
     ),
