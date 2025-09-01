@@ -2655,7 +2655,7 @@ sound_healing = {
         text=translate("music_exec_choice"),
         media="",
         media_type="",
-        options={translate('yes'): "music_exc_3", translate('no'): "end_1"},
+        options={translate('yes'): "music_exc_3", translate('no'): "stress_question_end"},
         keyboard_type="inline",
         next_question_id=""
     ),
