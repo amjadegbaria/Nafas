@@ -8,19 +8,19 @@ from config import TOKEN
 # Configure logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-# Configure the application with proper concurrency settings
-application = (
-    Application.builder()
-    .token(TOKEN)
-    .concurrent_updates(True)  # Enable concurrent updates processing
-    .read_timeout(30)  # Increase read timeout
-    .write_timeout(30)  # Increase write timeout
-    .connect_timeout(30)  # Increase connection timeout
-    .pool_timeout(30)  # Increase pool timeout
-    .build()
-)
-
 async def main() -> None:
+    # Configure the application with proper concurrency settings
+    application = (
+        Application.builder()
+        .token(TOKEN)
+        .concurrent_updates(True)  # Enable concurrent updates processing
+        .read_timeout(30)  # Increase read timeout
+        .write_timeout(30)  # Increase write timeout
+        .connect_timeout(30)  # Increase connection timeout
+        .pool_timeout(30)  # Increase pool timeout
+        .build()
+    )
+    
     # Add handlers
     application.add_handler(CommandHandler("start", default))
     application.add_handler(CommandHandler("restart", restart))
@@ -39,4 +39,7 @@ if __name__ == '__main__':
     try:
         asyncio.run(main())
     except KeyboardInterrupt:  # Ignore exception when Ctrl-C is pressed
-        pass
+        print("\n👋 Bot stopped successfully!")
+    except Exception as e:
+        print(f"\n❌ Error: {e}")
+        raise
