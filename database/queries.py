@@ -1,6 +1,5 @@
-from database import db, async_db
+from database import async_db
 from datetime import datetime, timedelta
-import asyncio
 
 
 # Save or update user's progress in the current flow

@@ -8,7 +8,6 @@ from database.queries import get_user_progress, save_user_progress,\
 from handlers.media_handler import handle_media_type
 from utils.helpers import already_answered
 from utils.constants import active_users_map, answered_questions
-import asyncio
 
 async def restart_flow(update, context):
     user_id = update.effective_user.id

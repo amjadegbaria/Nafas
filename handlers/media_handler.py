@@ -1,7 +1,6 @@
 from telegram import constants
 from utils.helpers import get_chat_id
 import aiofiles
-import asyncio
 
 
 async def send_media(chat_id, text, markup, media_path, media_type, bot):
