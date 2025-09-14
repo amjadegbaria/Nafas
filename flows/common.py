@@ -177,10 +177,10 @@ main_acknowledgement_question = {
         media="",
         media_type="",
         options={
-            translate('proud'): "acknowledgement_2",
-            translate('optimistic'): "acknowledgement_2",
-            translate('acceptable'): "acknowledgement_2",
-            translate('cheerful'): "acknowledgement_2",
+            translate('proud'): "acknowledgement_3",
+            translate('optimistic'): "acknowledgement_3",
+            translate('acceptable'): "acknowledgement_3",
+            translate('cheerful'): "acknowledgement_3",
         },
         keyboard_type="inline",
         next_question_id=""
@@ -263,6 +263,14 @@ main_acknowledgement_question = {
         options={},
         keyboard_type="",
         next_question_id="stress_question"),
+    "acknowledgement_3":Question(
+        id="acknowledgement_3",
+        text=translate("acknowledgement_3"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="stress_question")
 }
 
 stress_question = {

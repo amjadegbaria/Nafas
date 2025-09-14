@@ -9,19 +9,18 @@ from utils.helpers import update_already_answered
 
 async def handle_callback_query(update: Update, context: CallbackContext) -> None:
     user_id = update.effective_user.id
-    user_data = get_user_data(user_id)
+    user_data = await get_user_data(user_id)
 
-    flow = get_user_flow(user_id)
+    flow = await get_user_flow(user_id)
 
     # Check for inactivity and restart flow if necessary
-    if flow.id != 'restart_flow' and check_user_last_interaction(user_data):
+    if flow.id != 'restart_flow' and await check_user_last_interaction(user_data):
         await trigger_restart_flow(update, context)
         return
 
     # Move to the next question
     question = flow.get_current_question()
     answer = update.callback_query.data
-
 
     next_question_id = get_next_from_answer(update, question)
 
@@ -36,8 +35,8 @@ async def handle_callback_query(update: Update, context: CallbackContext) -> Non
 
     update_already_answered(user_id, question, answer)
     # Update flow progress
-    update_user_answer(update)
-    is_completed(flow, user_id)  # Check if flow is completed
+    await update_user_answer(update)
+    await is_completed(flow, user_id)  # Check if flow is completed
 
     flow.move_to_next_question(next_question_id)
     await process_question(update, context, flow)
