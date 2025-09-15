@@ -97,7 +97,7 @@ class Question:
     def get_options(self):
         return self._options
 
-    def get_next_question(self, answer):
+    def get_next_question(self, answer=None):
         if answer:
             return self._options.get(answer)
         return self.next_question_id

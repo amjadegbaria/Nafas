@@ -1,6 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import stress_question, main_acknowledgement_question, grounding_questions, rerouting_questions2, stress_question_end, sound_healing, breath_exc_478, negative_belief_stories
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, rerouting_questions2, stress_question_end, sound_healing, breath_exc_478, negative_belief_stories, emotion_release, feedback
 import i18n
 
 
@@ -87,7 +87,7 @@ questions = {
         media_type="",
         options={
             translate('stress_still_high_option3'): "stage4",
-            # translate('stress_still_high_option2'): restart_flow,
+            translate('stress_still_high_option1'): "emotion_release_1"
         },
         keyboard_type="inline",
         next_question_id=""
@@ -114,8 +114,27 @@ questions = {
         keyboard_type="inline",
         next_question_id=""
     ),
+    "stress1_3": Question(
+        id="stress1_3",
+        text=translate("stress_response_low"),
+        media="",
+        media_type="",
+        options={translate("stress_response_low_transition1"): 'grounding_question',
+                 translate("stress_response_low_transition2"): 'task6_1'},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task6_22": Question(
+        id="task6_22",
+        text=translate("task6_22"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="feedback_1"
+    ),
 }
-questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **rerouting_questions2, **breath_exc_478, **sound_healing, **stress_question_end, **negative_belief_stories, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **rerouting_questions2, **breath_exc_478, **sound_healing, **stress_question_end, **negative_belief_stories, **emotion_release, **feedback, **questions}
 
 # Initialize Flow
 flow = Flow("flow6", questions, "alt_into")

@@ -1,6 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import stress_question,main_acknowledgement_question, grounding_questions, color_breathing, stress_question_end, sound_healing, vagus_nerve_stim, task_4
+from flows.common import stress_question,main_acknowledgement_question, grounding_questions, color_breathing, stress_question_end, sound_healing, vagus_nerve_stim, task_4, emotion_release, feedback
 
 import i18n
 
@@ -87,7 +87,7 @@ questions = {
         media_type="",
         options={
             translate('stress_still_high_option3'): "stage4",
-            # translate('stress_still_high_option2'): restart_flow,
+            translate('stress_still_high_option1'): "emotion_release_1"
         },
         keyboard_type="inline",
         next_question_id=""
@@ -114,8 +114,33 @@ questions = {
         keyboard_type="inline",
         next_question_id=""
     ),
+    "stress1_3": Question(
+        id="stress1_3",
+        text=translate("stress_response_low"),
+        media="",
+        media_type="",
+        options={translate("stress_response_low_transition1"): 'grounding_question',
+                 translate("stress_response_low_transition2"): 'task4_1'},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "task4_4": Question(
+        id="task4_4",
+        text=translate("task4_4"),
+        media="",
+        media_type="",
+        options={
+            translate('running'):"feedback_1",
+            translate('walking'): "feedback_1",
+            translate('dancing'): "feedback_1",
+            translate('weight_lifting'): "feedback_1",
+            translate('other'): "feedback_1",
+        },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
 }
-questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **color_breathing, **vagus_nerve_stim, **sound_healing, **stress_question_end, **task_4, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **color_breathing, **vagus_nerve_stim, **sound_healing, **stress_question_end, **task_4, **emotion_release, **feedback, **questions}
 
 # Initialize Flow
 flow = Flow("flow4", questions, "alt_into")

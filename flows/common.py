@@ -344,7 +344,6 @@ stress_question_end = {
         media_type="",
         options={
             translate('stress_still_high_option3'): "integration1_1",
-            # translate('stress_still_high_option2'): restart_flow,
             translate('stress_still_high_option1'): "emotion_release_1"
 
         },
@@ -401,7 +400,7 @@ checkup_closure = {
         media_type="",
         options={},
         keyboard_type="",
-        next_question_id="end_1"
+        next_question_id="stage4"
     ),
     "checkup_closure_3": Question(
         id="checkup_closure_3",
@@ -409,8 +408,7 @@ checkup_closure = {
         media="",
         media_type="",
         options={
-            translate('yes'): "end_1",
-            translate('no'): "end_1",
+            translate('ready'): "stage4",
         },
         keyboard_type="inline",
         next_question_id=""
@@ -2702,5 +2700,45 @@ sound_healing = {
         options={translate('OK'): "music_exc_3"},
         keyboard_type="inline",
         next_question_id=""
+    ),
+}
+
+feedback = {
+    "feedback_1": Question(
+        id="feedback_1",
+        text=translate("feedback_1"),
+        media="",
+        media_type="",
+        options={"1 👎": "feedback_2", "2": "feedback_2", "3": "feedback_2", "4": "feedback_2", "5": "feedback_2",
+                 "6": "feedback_2", "7": "feedback_2", "8": "feedback_2", "9": "feedback_2", "10 👍": "feedback_2"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "feedback_2": Question(
+        id="feedback_2",
+        text=translate("feedback_2"),
+        media="",
+        media_type="",
+        options={translate("yes"): "feedback_3", translate("no"): "end_1"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "feedback_3": Question(
+        id="feedback_3",
+        text=translate("feedback_3"),
+        media="",
+        media_type="text",
+        options={},
+        keyboard_type="",
+        next_question_id="feedback_4"
+    ),
+    "feedback_4": Question(
+        id="feedback_4",
+        text=translate("feedback_4"),
+        media="",
+        media_type="text",
+        options={},
+        keyboard_type="",
+        next_question_id="end_1"
     ),
 }

@@ -1,8 +1,6 @@
 from classes.Question import Question
 from classes.Flow import Flow
-from flows.common import stress_question, main_acknowledgement_question, grounding_questions, half_salamander, stress_question_end, sound_healing, psychological_sigh, music_healing
-from utils.helpers import get_chat_id
-from utils.constants import answered_questions
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, half_salamander, stress_question_end, sound_healing, psychological_sigh, music_healing, emotion_release, feedback
 import i18n
 
 translate = i18n.Translator('data').translate
@@ -70,7 +68,7 @@ questions = {
         media_type="",
         options={
             translate('stress_still_high_option3'): "stage4",
-            # translate('stress_still_high_option2'): restart_flow,
+            translate('stress_still_high_option1'): "emotion_release_1"
         },
         keyboard_type="inline",
         next_question_id=""
@@ -97,8 +95,27 @@ questions = {
         keyboard_type="inline",
         next_question_id=""
     ),
+    "stress1_3": Question(
+        id="stress1_3",
+        text=translate("stress_response_low"),
+        media="",
+        media_type="",
+        options={translate("stress_response_low_transition1"): 'grounding_question',
+                 translate("stress_response_low_transition2"): 'music_healing_1'},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
+    "music_healing_7": Question(
+        id="music_healing_7",
+        text=translate("music_healing_7"),
+        media="",
+        media_type="",
+        options={translate("OK"): "feedback_1"},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
 }
-questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **half_salamander, **psychological_sigh, **sound_healing, **stress_question_end, **music_healing, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **half_salamander, **psychological_sigh, **sound_healing, **stress_question_end, **music_healing, **emotion_release, **feedback, **questions}
 
 # Initialize Flow
 flow = Flow("flow7", questions, "alt_into")

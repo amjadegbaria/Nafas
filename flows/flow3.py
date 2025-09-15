@@ -1,7 +1,7 @@
 from classes.Question import Question
 from classes.Flow import Flow
 import i18n
-from flows.common import stress_question, main_acknowledgement_question, grounding_questions, breath_exc_3, stress_question_end,emotion_release, sound_healing, emotions, task_3
+from flows.common import stress_question, main_acknowledgement_question, grounding_questions, breath_exc_3, stress_question_end,emotion_release, sound_healing, emotions, task_3,  feedback
 
 translate = i18n.Translator('data').translate
 
@@ -76,9 +76,7 @@ questions = {
         media_type="",
         options={
             translate('stress_still_high_option3'): "stage4",
-            # translate('stress_still_high_option2'): restart_flow,
             translate('stress_still_high_option1'): "emotion_release_1"
-
         },
         keyboard_type="inline",
         next_question_id=""
@@ -105,6 +103,16 @@ questions = {
         keyboard_type="inline",
         next_question_id=""
     ),
+    "stress1_3": Question(
+        id="stress1_3",
+        text=translate("stress_response_low"),
+        media="",
+        media_type="",
+        options={translate("stress_response_low_transition1"): 'grounding_question',
+                 translate("stress_response_low_transition2"): 'emotions_1'},
+        keyboard_type="inline",
+        next_question_id=""
+    ),
     "emotions_12": Question(
         id="emotions_12",
         text=translate("emotions_12"),
@@ -114,10 +122,19 @@ questions = {
         keyboard_type="inline",
         next_question_id=""
     ),
+    "task3_4": Question(
+        id="task3_4",
+        text=translate("task3_4"),
+        media="",
+        media_type="",
+        options={},
+        keyboard_type="",
+        next_question_id="feedback_1"
+    ),
 }
 
 
-questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **breath_exc_3, **sound_healing, **stress_question_end,**emotion_release, **emotions, **task_3, **questions}
+questions = {**main_acknowledgement_question, **stress_question, **grounding_questions, **breath_exc_3, **sound_healing, **stress_question_end,**emotion_release, **emotions, **task_3, **feedback, **questions}
 
 
 # Initialize Flow
