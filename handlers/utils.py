@@ -34,7 +34,7 @@ async def start_flow(user_id, flow_id, first_question_id):
 
 
 def get_next_from_answer(update, question):
-    if len(question.get_options()) == 0:  # if no buttons, get the next question from next_question_id
+    if len(question.get_options()) == 0 and not question.get_media_type() == "text" :  # if no buttons, get the next question from next_question_id
         return question.next_question_id
     query = update.callback_query
     if query:  # if user clicks a button, direct to the next question according to the user choice
@@ -93,8 +93,7 @@ async def get_user_flow(user_id):
             return active_users_map[user_id]
         elif completed:
             last_completed_id = completed[len(completed) - 1].get('flow_id')
-            next_flow_id="flow2"
-            # next_flow_id = flows_map[last_completed_id]
+            next_flow_id = flows_map[last_completed_id]
             last_flow = completed[-1]
             last_interaction = last_flow['last_interaction'].strftime("%Y-%m-%dT%H:%M:%S.%f%z")
             date = datetime.fromisoformat(last_interaction)

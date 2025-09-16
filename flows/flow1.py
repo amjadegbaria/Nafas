@@ -2,7 +2,7 @@ import asyncio
 from classes.Question import Question
 from classes.Flow import Flow
 from utils.helpers import timer
-from flows.common import intro, main_acknowledgement_question, stress_question, grounding_questions, psychological_sigh, countdown, emotion_release, stress_question_end, sound_healing, integration_3_intro, task_1
+from flows.common import intro, main_acknowledgement_question, stress_question, grounding_questions, psychological_sigh, countdown, emotion_release, stress_question_end, sound_healing, integration_3_intro, task_1, feedback
 
 import i18n
 
@@ -92,7 +92,6 @@ questions = {
         media_type="",
         options={
             translate('stress_still_high_option3'): "stage4",
-            # translate('stress_still_high_option2'): restart_flow,
             translate('stress_still_high_option1'): "emotion_release_1"
         },
         keyboard_type="inline",
@@ -161,11 +160,19 @@ questions = {
         keyboard_type="inline",
         next_question_id=""
     ),
-
-
+    "task1_4": Question(
+        id="task1_4",
+        text=translate("task1_4"),
+        media="",
+        media_type="",
+        options={translate("important-1"): "feedback_1", translate("important-2"): "feedback_1",
+                 translate("important-3"): "feedback_1", },
+        keyboard_type="inline",
+        next_question_id=""
+    ),
 }
 
-questions = {**intro,**main_acknowledgement_question, **stress_question, **grounding_questions, **psychological_sigh, **countdown, **sound_healing,**emotion_release, **stress_question_end, **integration_3_intro, **task_1, **questions}
+questions = {**intro,**main_acknowledgement_question, **stress_question, **grounding_questions, **psychological_sigh, **countdown, **sound_healing,**emotion_release, **stress_question_end, **integration_3_intro, **task_1, **feedback, **questions}
 
 # Initialize Flow
 flow = Flow("flow1", questions, "alt_into")
